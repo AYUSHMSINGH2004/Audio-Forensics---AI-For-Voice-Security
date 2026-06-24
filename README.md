@@ -264,7 +264,7 @@ Valid Language Bucket
 
 ## 🤖 Synthetic Voice Generation Pipeline
 
-Synthetic speech sources used across the project: **OpenAI voice generation · Google Cloud TTS · Coqui XTTSv2 · Microsoft Edge TTS · gTTS · eSpeak** — used for voice cloning simulation, AI voice diversity, and robustness testing.
+Synthetic speech sources used across the project: **OpenAI TTS · Google Cloud TTS · Coqui XTTSv2 · Microsoft Edge TTS · MMS ** — used for voice cloning simulation, AI voice diversity, and robustness testing.
 
 ### 🎙️ ElevenLabs v3 Pipeline
 
