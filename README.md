@@ -9,17 +9,25 @@
 
 </p>
 
-## 🛡️ Production-Grade AI Voice Deepfake Detection System
 
-Audio Forensics is an AI-powered voice security platform designed to detect synthetic speech, AI-generated voices, and voice cloning attacks.
+# 🛡️ Production-Grade AI Voice Deepfake Detection System
 
-The system evolved through **8+ model generations**, moving from traditional spectrogram-based deep learning into a production forensic engine combining:
+Audio Forensics is an AI-powered voice security platform designed to detect:
 
-- Transformer speech representations
-- Signal-processing based forensic features
+- AI-generated speech
+- Synthetic voices
+- Voice cloning attacks
+- Deepfake audio manipulation
+
+
+The project evolved through **8+ model generations**, progressing from traditional spectrogram-based deep learning approaches into a production forensic engine combining:
+
+- Transformer-based speech representations
+- Signal-processing forensic features
 - Siamese similarity learning
 - Ensemble machine learning
 - Real-time WebSocket inference
+
 
 The platform supports:
 
@@ -27,13 +35,15 @@ The platform supports:
 ✅ Real-time voice interception simulation  
 ✅ AI-generated speech detection  
 ✅ Threat scoring  
-✅ Operator-friendly forensic reports  
+✅ Automated forensic reports  
+
 
 ---
 
 # 🚀 Live Deployment
 
-## Production Deployment (Google Cloud Run)
+
+## Production Deployment — Google Cloud Run
 
 The original production deployment was hosted on Google Cloud Run.
 
@@ -49,7 +59,5 @@ Deployment stack:
 - LightGBM
 - Google Cloud Container Registry
 
-Original Cloud Run endpoint:
 
-```text
-https://threat-engine-v8-810126162948.us-central1.run.app/
+Original Cloud Run endpoint:
