@@ -530,12 +530,61 @@ Each analysis generates a structured forensic report:
 
 ## 👥 Contributors
 
-| Contributor | Responsibilities |
-|---|---|
-| **Ayush M Singh** | Model development · Backend engineering · AI pipeline design · Dataset processing · System optimization |
-| **Venkata Sriram Topalli** | Model development · Backend engineering · AI pipeline design · Dataset processing · System optimization · **Backend deployment** |
+<div align="center">
 
-> All core work — model development, backend engineering, AI pipeline design, dataset processing, and system optimization — was a joint effort between both contributors. Backend deployment was handled solely by **Venkata Sriram Topalli**.
+### 🤝 Built by a Two-Person Team
+
+![Collaboration](https://img.shields.io/badge/Collaboration-Equal%20Partnership-blueviolet)
+![Contributors](https://img.shields.io/badge/Contributors-2-informational)
+
+</div>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🧑‍💻 Ayush M Singh
+**Co-Creator · AI & Backend Engineer**
+
+[![GitHub](https://img.shields.io/badge/GitHub-AYUSHMSINGH2004-181717?logo=github&logoColor=white)](https://github.com/AYUSHMSINGH2004)
+
+**Contributions:**
+- 🧠 Model development across all V1 → V8.1 generations
+- ⚙️ Backend engineering (FastAPI services, API design)
+- 🔬 AI pipeline design — preprocessing, feature fusion, inference flow
+- 📂 Dataset processing & curation (real + synthetic corpora)
+- 🚀 System optimization & performance tuning
+
+</td>
+<td width="50%" valign="top">
+
+### 🧑‍💻 Venkata Sriram Topalli
+**Co-Creator · AI & Deployment Engineer**
+
+**Contributions:**
+- 🧠 Model development across all V1 → V8.1 generations
+- ⚙️ Backend engineering (FastAPI services, API design)
+- 🔬 AI pipeline design — preprocessing, feature fusion, inference flow
+- 📂 Dataset processing & curation (real + synthetic corpora)
+- 🚀 System optimization & performance tuning
+- ☁️ **Backend deployment** (Google Cloud Run + Hugging Face Spaces) — *sole owner of this workstream*
+
+</td>
+</tr>
+</table>
+
+### 📋 Contribution Matrix
+
+| Workstream | Ayush M Singh | Venkata Sriram Topalli |
+|---|---|---|
+| Model Development | ✅ | ✅ |
+| Backend Engineering | ✅ | ✅ |
+| AI Pipeline Design | ✅ | ✅ |
+| Dataset Processing | ✅ | ✅ |
+| System Optimization | ✅ | ✅ |
+| Backend Deployment | ❌ | ✅ *(sole contributor)* |
+
+> Nearly every workstream — model development, backend engineering, AI pipeline design, dataset processing, and system optimization — was a **fully joint effort**. The one exception is **backend deployment**, which was owned and executed solely by **Venkata Sriram Topalli**.
 
 ---
 
