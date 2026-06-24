@@ -544,7 +544,9 @@ Each analysis generates a structured forensic report:
 - 📂 Dataset processing & curation (real + synthetic corpora)
 - 🚀 System optimization & performance tuning
 - ☁️ **Backend deployment** (Google Cloud Run + Hugging Face Spaces) — *sole owner of this workstream*
-
+</td>
+<tr>
+<table>
 
 > Nearly every workstream — model development, backend engineering, AI pipeline design, dataset processing, and system optimization — was a **fully joint effort**. The one exception is **backend deployment**, which was owned and executed solely by **Venkata Sriram Topalli**.
 
