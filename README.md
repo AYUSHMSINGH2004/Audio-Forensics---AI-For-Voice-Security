@@ -1,99 +1,133 @@
-# Audio Forensics: AI for Voice Security 🎙️🛡️
+# 🎙️ Audio Forensics: AI for Voice Security
 
-A multi-stage AI-powered audio deepfake detection and voice security platform designed to identify synthetic speech attacks, analyze suspicious voice activity, and provide forensic threat intelligence for both uploaded audio and real-time streaming scenarios.
+<p align="center">
 
-The project evolved from a research-based spectrogram classifier into a production-grade voice security engine using transformer-based speech representations, forensic signal analysis, Siamese learning, and optimized inference pipelines.
+<img src="https://img.shields.io/badge/AI-Voice%20Security-blue">
+<img src="https://img.shields.io/badge/Deepfake-Detection-red">
+<img src="https://img.shields.io/badge/Backend-FastAPI-green">
+<img src="https://img.shields.io/badge/Model-Version%208.1-purple">
+
+</p>
+
+## 🛡️ Production-Grade AI Voice Deepfake Detection System
+
+Audio Forensics is an AI-powered voice security platform designed to detect synthetic speech, AI-generated voices, and voice cloning attacks.
+
+The system evolved through **8+ model generations**, moving from traditional spectrogram-based deep learning into a production forensic engine combining:
+
+* Transformer speech representations
+* Signal-processing based forensic features
+* Siamese similarity learning
+* Ensemble machine learning
+* Real-time WebSocket inference
+
+The platform supports:
+
+✅ Static audio forensic analysis
+✅ Real-time voice interception simulation
+✅ AI-generated speech detection
+✅ Threat scoring
+✅ Operator-friendly forensic reports
 
 ---
 
-# 🚀 Project Overview
+# 🚀 Live Deployment
 
-Modern AI voice generation systems can create highly realistic synthetic speech. This creates security risks in:
+## Production Deployment (Google Cloud Run)
 
-* Voice authentication attacks
-* Scam calls
-* Impersonation attempts
-* Social engineering
-* Synthetic media misuse
+The original production deployment was hosted on Google Cloud Run.
 
-Audio Forensics addresses this problem by analyzing acoustic artifacts, speech embeddings, and forensic signal patterns to classify whether audio is:
+Cloud Run was selected because the complete infrastructure was inside the Google Cloud ecosystem.
 
-* ✅ Authentic Human Speech
-* 🚨 AI Generated / Synthetic Speech
+Deployment stack:
 
----
+* Docker
+* FastAPI
+* PyTorch Runtime
+* WavLM
+* Whisper
+* LightGBM
+* Google Cloud Container Registry
 
-# ✨ Key Features
-
-## Static Audio Analysis
-
-Upload an audio file and receive:
-
-* AI probability score
-* Human probability score
-* Threat classification
-* Language detection
-* Latency information
-* Security action report
-
-Supported formats:
+Original Cloud Run endpoint:
 
 ```
-.wav
-.mp3
-.flac
-.ogg
-.mp4
+https://threat-engine-v8-810126162948.us-central1.run.app/
 ```
+
+The Cloud Run deployment was successfully tested and used as the primary production environment.
+
+However, since the service was running continuously, Google Cloud resources continued consuming billing credits.
+
+Therefore, the Cloud Run instance was shut down after validation.
 
 ---
 
-## Real-Time Live Audio Interception
+# 🌐 Current Public Demo Deployment
 
-The system supports:
+For public accessibility, the backend has been redeployed using Hugging Face Spaces.
 
-* WebSocket-based streaming
-* Live chunk analysis
-* Rolling threat updates
-* Final cumulative forensic report
+Live Backend:
 
-Designed for:
+```
+https://venkatasriram-audio-forensics-v8-1-demo.hf.space
+```
 
-* Live call monitoring
-* Voice security systems
-* Real-time fraud detection
+Current deployment provides:
+
+* Static audio analysis API
+* Live WebSocket streaming
+* V8.1 forensic inference engine
 
 ---
 
-# 🏗️ System Architecture
+# 🧠 System Pipeline Overview
 
 ```
-                Audio Input
-                    |
-                    |
-        +-----------+-----------+
-        |                       |
- Static Upload            Live Stream
-        |                       |
-        |                       |
- FastAPI REST API        WebSocket API
-        |                       |
-        +-----------+-----------+
-                    |
-            V8.1 Forensic Engine
-                    |
-        +-----------+-----------+
-        |
-        |
-  WavLM Embeddings
-        +
-  LFCC Forensic Features
-        |
-        |
- LightGBM Threat Classifier
-        |
-        |
- Threat Intelligence Report
+                 Audio Input
+
+                      |
+
+        +-------------+-------------+
+
+        Static Upload          Live Stream
+
+              |                     |
+
+          REST API             WebSocket
+
+              |                     |
+
+              +----------+----------+
+
+                         |
+
+              V8.1 Audio Forensic Engine
+
+                         |
+
+        +----------------+----------------+
+
+        |                                 |
+
+   WavLM Embeddings              LFCC Features
+
+        |                                 |
+
+        +----------------+----------------+
+
+                         |
+
+              Feature Fusion Layer
+
+                         |
+
+                  LightGBM Classifier
+
+                         |
+
+              Threat Intelligence Report
+
 ```
 
 ---
@@ -104,287 +138,330 @@ Designed for:
 Audio-Forensics---AI-For-Voice-Security
 
 │
-├── Backend/
-│   ├── V_8_Production/
-│   └── V_8_1_Production/
+├── Backend
+│   ├── V_8_Production
+│   └── V_8_1_Production
 │
-├── Frontend/
+├── Frontend
 │
-├── Data Preprocessing/
+├── Data Preprocessing
 │
 ├── Untitled.ipynb
 │
 ├── live_stream_tester_v8_1.py
 │
 └── README.md
+
 ```
 
 ---
 
-# 🔬 Data Preprocessing Pipeline
+# 📊 Dataset Engineering & Data Pipeline
 
-The preprocessing pipeline converts raw speech into forensic-ready training data.
+Data quality is one of the most important components of this project.
 
-## Audio Collection
+The model is trained on a carefully engineered combination of:
 
-Sources include:
+* Real human speech
+* Synthetic AI-generated speech
+* Multilingual speech samples
+* Multiple TTS generation styles
 
-* Real multilingual speech datasets
-* Synthetic TTS generated voices
+The objective was not only to detect obvious synthetic audio, but also:
 
-Synthetic generation engines:
-
-* OpenAI TTS
-* Google Cloud TTS
-* Coqui XTTSv2
-* Microsoft Edge TTS
-* gTTS
-* eSpeak
-
----
-
-## Audio Standardization
-
-All audio is converted into a common format:
-
-```
-Sample Rate : 16000 Hz
-Channels    : Mono
-Format      : WAV
-```
-
-Processing includes:
-
-* Resampling
-* Noise handling
-* Silence removal
-* Chunking
-* Padding
-* Corrupted file filtering
+* Voice cloning
+* Neural TTS artifacts
+* Compression artifacts
+* Telephonic degradation
+* Cross-language synthetic speech
 
 ---
 
-# 🧠 Model Evolution
+# 🌍 Real Speech Dataset Pipeline
 
-## Version 1 — CRNN Baseline
+The real speech pipeline uses multilingual speech sources similar to Common Voice style datasets.
 
-Architecture:
+Processing flow:
 
 ```
-Mel Spectrogram
+Raw Dataset Archive
+
         |
-Modified ResNet18
+
+Language Filtering
+
         |
-BiLSTM
+
+Speaker Validation
+
         |
-Classifier
+
+Audio Extraction
+
+        |
+
+Normalization
+
+        |
+
+Training Dataset
+
 ```
+
+---
+
+## Language Identification
+
+Because the dataset contains multiple languages, language filtering is performed before training.
 
 Techniques:
 
-* Mel spectrogram extraction
-* CNN feature extraction
-* Temporal sequence modeling
+* GlotLID language identification
+* Whisper-based verification
 
 Purpose:
 
-Created the first deepfake detection baseline.
+* Remove incorrect language samples
+* Improve multilingual robustness
+* Prevent noisy labels
 
 ---
 
-# Version 2 — Robust CRNN
+# 🤖 Synthetic Voice Dataset Generation
 
-Added:
+To make the detector robust against modern AI voices, synthetic samples were generated using multiple TTS systems.
 
-* Noise augmentation
-* Frequency masking
-* Time masking
-* Stronger regularization
+Synthetic sources include:
 
-Goal:
+### OpenAI Voice Generation
 
-Improve robustness against real-world audio degradation.
+Used for high-quality neural synthetic voices.
 
----
+### Google Cloud Text-To-Speech
 
-# Version 3 — Hybrid Augmentation CRNN
+Used for cloud-generated speech diversity.
 
-Added:
-
-* Probabilistic augmentation
-* Reverberation simulation
-* Analog channel effects
-
-Improved:
-
-* Generalization
-* Noisy audio performance
-
----
-
-# Version 4 — Wav2Vec2 + XGBoost
-
-Major architectural shift.
-
-Pipeline:
-
-```
-Raw Audio
-    |
-Wav2Vec2
-    |
-768D Embedding
-    |
-XGBoost Classifier
-```
-
-Added:
-
-* Transformer speech embeddings
-* Whole clip inference
-* Whisper language detection
-
----
-
-# Version 5 — Production Wrapper
-
-Version 5 converted Version 4 into an API system.
-
-Added:
-
-* FastAPI backend
-* ONNX Runtime inference
-* REST API
-* WebSocket streaming
-
-Endpoints:
-
-```
-POST /analyze
-
-WS /ws/stream
-
-GET /
-```
-
----
-
-# Version 6 — Forensic Feature Fusion
-
-Added handcrafted forensic analysis.
-
-Features:
-
-* Wav2Vec2 embeddings
-* LFCC features
-* Phase difference analysis
-* Phase jitter statistics
-
-Classifier:
-
-```
-Wav2Vec2 + Forensic Features
-              |
-          XGBoost
-```
-
----
-
-# Version 7 — Siamese WavLM Network
-
-Introduced similarity learning.
-
-Architecture:
-
-```
-Audio A
-   |
- WavLM
-   |
-Embedding
-
-
-Audio B
-   |
- WavLM
-   |
-Embedding
-
-
-Difference Vector
-        |
-Classifier
-```
+### Coqui XTTSv2
 
 Used for:
 
-* Voice cloning detection
-* Similarity-based verification
+* Voice cloning simulation
+* Speaker similarity testing
+
+### Microsoft Edge TTS
+
+Used for additional synthetic diversity.
+
+### gTTS / eSpeak
+
+Used as fallback generators for additional variation.
 
 ---
 
-# Version 8 — WavLM DNA Classifier
+# 🔊 Audio Preprocessing Pipeline
 
-Pipeline:
-
-```
-Full Audio
-    |
-Sliding Windows
-    |
-WavLM Embeddings
-    |
-DNA Vector
-    |
-XGBoost
-```
-
-Reported Accuracy:
+Every audio sample passes through:
 
 ```
-99.71%
+Input Audio
+
+     |
+
+Format Validation
+
+     |
+
+Resampling
+
+     |
+
+Mono Conversion
+
+     |
+
+Noise Filtering
+
+     |
+
+Silence Removal
+
+     |
+
+Chunk Generation
+
+     |
+
+Feature Extraction
+
 ```
 
 ---
 
-# Version 8.1 — Production Model ⭐
+## Standard Audio Format
 
-Latest production engine.
+All training and inference audio is normalized to:
+
+```
+Sample Rate : 16000 Hz
+
+Channels    : Mono
+
+Format      : WAV
+
+```
+
+This ensures consistency between:
+
+* Training
+* Validation
+* Deployment
+
+---
+
+# 🧹 Cleaning & Filtering
+
+Preprocessing removes:
+
+* Corrupted files
+* Empty recordings
+* Extremely short clips
+* Invalid formats
+* Incorrect language samples
+
+Techniques used:
+
+* FFmpeg conversion
+* RMS energy filtering
+* Silence trimming
+* Validation scripts
+
+---
+
+# 🎛️ Data Augmentation
+
+To simulate real-world attacks, the dataset includes:
+
+## Noise Injection
+
+Simulates:
+
+* Background noise
+* Recording environments
+
+## Time Masking
+
+Inspired by SpecAugment.
+
+## Frequency Masking
+
+Improves robustness against:
+
+* Compression
+* Band limitations
+
+## Telephonic Simulation
+
+Includes:
+
+* Band-pass filtering
+* Codec-like degradation
+* Channel distortion
+
+---
+
+# 🔬 Feature Extraction
+
+Different model generations use different representations.
+
+## Mel Spectrograms
+
+Used in early CRNN models.
+
+Captures:
+
+* Frequency patterns
+* Spectral artifacts
+
+---
+
+## Wav2Vec2 Embeddings
+
+Used in Version 4+.
+
+Advantages:
+
+* Learns speech representations
+* Captures high-level acoustic information
+
+---
+
+## WavLM Embeddings
+
+Used in Version 7 and Version 8.
+
+Captures:
+
+* Speaker characteristics
+* Speech structure
+* Synthetic artifacts
+
+---
+
+## LFCC Features
+
+Used in Version 8.1.
+
+Captures:
+
+* Micro spectral differences
+* Frequency inconsistencies
+
+---
+
+# 🧬 Model Evolution
+
+| Version | Architecture              | Main Contribution         |
+| ------- | ------------------------- | ------------------------- |
+| V1      | CRNN + Mel Spectrogram    | Initial baseline          |
+| V2      | Augmented CRNN            | Robustness improvement    |
+| V3      | Hybrid CRNN               | Better generalization     |
+| V4      | Wav2Vec2 + XGBoost        | Transformer transition    |
+| V5      | Production Wrapper        | API + Streaming           |
+| V6      | Wav2Vec2 + LFCC + XGBoost | Forensic features         |
+| V7      | Siamese WavLM             | Voice similarity learning |
+| V8      | WavLM DNA + XGBoost       | Production classifier     |
+| V8.1    | WavLM + LFCC + LightGBM   | Final forensic engine     |
+
+---
+
+# ⭐ Version 8.1 Production Model
 
 Architecture:
 
 ```
-                 Audio
+Audio
 
-                    |
-        +-----------+-----------+
+ |
 
-        WavLM Embeddings
+WavLM Encoder
 
-                    +
+ +
 
-        LFCC Forensic Features
+LFCC Extraction
 
-                    |
+ |
 
-          848 Dimension Vector
+848 Dimension Feature Vector
 
-                    |
+ |
 
-              LightGBM
+LightGBM
 
-                    |
+ |
 
-          Threat Classification
+Threat Classification
+
 ```
-
-Features:
-
-* Transformer speech representation
-* Signal-level forensic analysis
-* Telephonic augmentation
-* Whole clip analysis
-* Cached embeddings
 
 Reported Accuracy:
 
@@ -394,58 +471,11 @@ Reported Accuracy:
 
 ---
 
-# 🚀 Deployment
+# 🧪 Testing
 
-## Primary Deployment — Google Cloud Run
+## Static Analysis
 
-The original production deployment was made using Google Cloud Run because the entire infrastructure was hosted inside our Google Cloud environment.
-
-Deployment stack:
-
-* Docker
-* FastAPI
-* PyTorch Runtime
-* WavLM
-* Whisper
-* LightGBM
-
-Original production endpoint:
-
-```
-https://threat-engine-v8-810126162948.us-central1.run.app/
-```
-
-However, Cloud Run resources were shut down after testing because keeping the service active continuously resulted in ongoing Google Cloud billing charges.
-
----
-
-# Current Demo Deployment — Hugging Face Spaces
-
-For public demonstration and testing, the backend has been redeployed on Hugging Face Spaces.
-
-Live Backend:
-
-```
-https://venkatasriram-audio-forensics-v8-1-demo.hf.space
-```
-
-The deployed backend provides:
-
-* Static audio analysis
-* Live WebSocket streaming
-* V8.1 inference pipeline
-
----
-
-# 🧪 Testing Static Audio Analysis
-
-Use the deployed backend:
-
-```
-https://venkatasriram-audio-forensics-v8-1-demo.hf.space
-```
-
-Send an audio file through:
+Endpoint:
 
 ```
 POST /analyze
@@ -456,18 +486,22 @@ Example:
 ```python
 import requests
 
+
 url="https://venkatasriram-audio-forensics-v8-1-demo.hf.space/analyze"
 
+
 files={
-    "file":open("test.wav","rb")
+"file":open("sample.wav","rb")
 }
+
 
 response=requests.post(url,files=files)
 
 print(response.json())
+
 ```
 
-Response includes:
+Returns:
 
 * Threat status
 * AI probability
@@ -477,30 +511,27 @@ Response includes:
 
 ---
 
-# 🎧 Live Stream Testing
+# 🎧 Live Streaming Testing
 
-The repository contains:
+File:
 
 ```
 live_stream_tester_v8_1.py
 ```
 
-This simulates microphone input locally.
-
 Install:
 
-```bash
+```
 pip install websockets librosa numpy nest_asyncio
 ```
 
 Update:
 
 ```python
-uri =
-"wss://venkatasriram-audio-forensics-v8-1-demo.hf.space/ws/stream"
+uri="wss://venkatasriram-audio-forensics-v8-1-demo.hf.space/ws/stream"
 ```
 
-Set your test file:
+Set:
 
 ```python
 TEST_FILE="sample.wav"
@@ -508,102 +539,79 @@ TEST_FILE="sample.wav"
 
 Run:
 
-```bash
+```
 python live_stream_tester_v8_1.py
 ```
 
 The script:
 
 1. Loads audio
-2. Converts it to 16kHz mono
-3. Splits audio into 0.5 second chunks
-4. Streams chunks through WebSocket
-5. Receives live threat updates
+2. Converts to 16kHz mono
+3. Splits into 0.5 second chunks
+4. Streams through WebSocket
+5. Receives live predictions
 6. Prints final forensic report
-
-Example output:
-
-```
-[LIVE]
-
-Status: Suspicious
-
-Human: 12%
-AI: 88%
-
-Latency: 240ms
-```
-
-Final output:
-
-```
-FINAL V8.1 CUMULATIVE THREAT REPORT
-```
 
 ---
 
-# Frontend Deployment Status
+# 🖥️ Frontend
 
-The frontend has not been publicly deployed.
+Built using:
+
+* React
+* Vite
+* Tailwind CSS
+* shadcn/ui
+* WebSockets
+* Firebase
+
+Features:
+
+* Authentication
+* Analysis history
+* Operator dashboard
+* Threat visualization
+
+---
+
+# 🔒 Frontend Deployment Status
+
+The frontend is intentionally not publicly deployed.
 
 Reason:
 
-The frontend integrates Firebase for:
+The application stores:
 
-* Authentication
-* User analysis history
-* Stored forensic reports
+* User history
+* Authentication information
+* Analysis records
 
-Public deployment without additional security hardening could expose sensitive Firebase configuration and user data workflows.
+through Firebase.
+
+Public deployment without additional security hardening could expose Firebase configuration and sensitive workflows.
 
 Therefore:
 
-✅ Backend deployed
-✅ AI inference publicly available
-❌ Frontend remains private/local
+✅ Backend → Publicly deployed
+✅ AI Engine → Accessible
+❌ Frontend → Local/private deployment only
 
 ---
 
-# Running Frontend Locally
+# 👥 Contributors
 
-```bash
-cd Frontend
+* **Ayush M Singh**
 
-npm install
+  * Model development
+  * Backend engineering
+  * Deployment
+  * System architecture
 
-npm run dev
-```
-
-Configure:
-
-```
-.env.local
-```
-
-with Firebase credentials.
-
-Never commit Firebase secrets.
+(Add remaining contributors)
 
 ---
 
-# Contributors
-
-* Ayush M Singh — Project Lead, Model Development, Backend Integration
-
-(Add remaining team members)
-
----
-
-# Important Notes
-
-* Version 5 is a production wrapper around Version 4.
-* Version 8.1 is the latest production inference engine.
-* Training datasets and model weights should not be pushed publicly.
-* Remove all secrets before deployment.
-
----
-
-# Project Links
+# 🔗 Links
 
 Repository:
 
@@ -611,8 +619,26 @@ Repository:
 https://github.com/AYUSHMSINGH2004/Audio-Forensics---AI-For-Voice-Security
 ```
 
-Live Backend:
+Backend:
 
 ```
 https://venkatasriram-audio-forensics-v8-1-demo.hf.space
 ```
+
+---
+
+# ⚠️ Notes
+
+* Do not upload datasets publicly.
+* Do not commit Firebase credentials.
+* Do not commit model weights without Git LFS.
+* Version 5 is an inference wrapper around Version 4.
+* Version 8.1 is the final production engine.
+
+---
+
+<p align="center">
+
+Built for AI-powered voice security and deepfake defense.
+
+</p>
