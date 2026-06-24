@@ -1,1610 +1,515 @@
-# 🎙️ Audio Forensics: AI for Voice Security
+<div align="center">
 
-## 🛡️ Production-Grade AI Voice Deepfake Detection System
+# 🎙️ Audio Forensics
+### AI for Voice Security
 
-Audio Forensics is an AI-powered voice security platform designed to detect synthetic speech, AI-generated voices, and voice cloning attacks.
+**A production-grade AI system for detecting synthetic speech, voice cloning, and AI-generated voice attacks — in real time.**
 
-The system evolved through **8+ model generations**, moving from spectrogram-based deep learning into a production forensic engine combining:
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![Accuracy](https://img.shields.io/badge/Accuracy-99.84%25-success)
+![Languages](https://img.shields.io/badge/Languages-9-orange)
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688)
+![React](https://img.shields.io/badge/React-Frontend-61DAFB)
+![PyTorch](https://img.shields.io/badge/PyTorch-WavLM-EE4C2C)
+![GitHub stars](https://img.shields.io/github/stars/AYUSHMSINGH2004/Audio-Forensics---AI-For-Voice-Security?style=social)
 
-* Transformer speech representations
-* Signal-processing forensic features
-* Siamese similarity learning
-* Ensemble machine learning
-* Real-time WebSocket inference
-
-Supports:
-
-✅ Static audio forensic analysis
-✅ Real-time voice interception simulation
-✅ AI-generated speech detection
-✅ Threat scoring
-✅ Automated forensic reports
+</div>
 
 ---
 
-# 🚀 Deployment
+## 📖 Overview
 
-## Google Cloud Run (Primary Production Deployment)
+**Audio Forensics** is an AI-powered voice security platform built to detect synthetic speech, AI-generated voices, and voice cloning attacks.
 
-Original production deployment:
+The system evolved through **8+ model generations** — moving from spectrogram-based deep learning to a production forensic engine that fuses:
+
+- 🧬 Transformer speech representations
+- 🔬 Signal-processing forensic features
+- 🧩 Siamese similarity learning
+- 🌲 Ensemble machine learning
+- ⚡ Real-time WebSocket inference
+
+### Key Capabilities
+
+| Capability | Description |
+|---|---|
+| ✅ Static Forensic Analysis | Deep analysis of uploaded audio recordings |
+| ✅ Real-Time Interception | Live voice stream monitoring via WebSocket |
+| ✅ AI Speech Detection | Identifies AI-generated and cloned voices |
+| ✅ Threat Scoring | Quantified risk assessment per analysis |
+| ✅ Automated Forensic Reports | Structured, actionable security output |
+
+---
+
+## 📑 Table of Contents
+
+- [Live Deployments](#-live-deployments)
+- [System Architecture](#-system-architecture)
+- [Model Evolution](#-model-evolution)
+- [Dataset Intelligence](#-dataset-intelligence)
+- [Language Identification (GlotLID)](#-language-identification-glotlid)
+- [Synthetic Voice Generation Pipeline](#-synthetic-voice-generation-pipeline)
+- [Audio Preprocessing](#-audio-preprocessing)
+- [Feature Extraction](#-feature-extraction)
+- [Data Augmentation](#-data-augmentation)
+- [Testing & API Usage](#-testing--api-usage)
+- [Frontend](#-frontend)
+- [Threat Intelligence Report](#-threat-intelligence-report)
+- [Performance](#-performance)
+- [Technology Stack](#-technology-stack)
+- [Security Practices](#-security-practices)
+- [Notes](#-notes)
+- [Contributors](#-contributors)
+- [License](#-license)
+- [Links](#-links)
+
+---
+
+## 🚀 Live Deployments
+
+### Google Cloud Run — *Primary Production Deployment (archived)*
 
 ```
 https://threat-engine-v8-810126162948.us-central1.run.app/
 ```
 
-Stack:
+**Stack:** Docker · FastAPI · PyTorch · WavLM · Whisper · LightGBM · Google Cloud Container Registry
 
-* Docker
-* FastAPI
-* PyTorch
-* WavLM
-* Whisper
-* LightGBM
-* Google Cloud Container Registry
+> Cloud Run was used because the full infrastructure lived inside Google Cloud. After validation, the service was stopped to avoid continuous billing.
 
-Cloud Run was used because the complete infrastructure was inside Google Cloud. After validation, the service was stopped to avoid continuous billing.
-
----
-
-## Hugging Face Spaces Demo Deployment
-
-Current public backend:
+### Hugging Face Spaces — *Current Public Backend*
 
 ```
 https://venkatasriram-audio-forensics-v8-1-demo.hf.space
 ```
 
-Provides:
-
-* Static analysis API
-* WebSocket live streaming
-* V8.1 forensic inference
+Provides: Static analysis API · WebSocket live streaming · V8.1 forensic inference
 
 ---
 
-# 🧠 System Architecture
+## 🧠 System Architecture
 
 ```mermaid
 flowchart LR
-
-A[Audio Input] --> B[REST API / WebSocket]
-B --> C[V8.1 Forensic Engine]
-
-C --> D[Audio Preprocessing]
-
-D --> E[WavLM Encoder]
-D --> F[LFCC Feature Extraction]
-
-E --> G[Feature Fusion]
-F --> G
-
-G --> H[848-D Feature Vector]
-
-H --> I[LightGBM Classifier]
-
-I --> J[AI Generated / Human Classification]
-
-J --> K[Threat Score]
-K --> L[Automated Forensic Report]
+    A[User Audio Input] --> B[REST API / WebSocket]
+    B --> C[Audio Validation]
+    C --> D[GlotLID Language Check]
+    D --> E[Preprocessing]
+    E --> F[WavLM Encoder]
+    E --> G[LFCC Extraction]
+    F --> H[Feature Fusion]
+    G --> H
+    H --> I[848-D Feature Vector]
+    I --> J[LightGBM Classifier]
+    J --> K[AI / Human Classification]
+    K --> L[Threat Scoring]
+    L --> M[Automated Forensic Report]
+    M --> N[Dashboard]
 ```
 
-Pipeline:
-
-```
-Audio Input
-↓
-REST/WebSocket
-↓
-V8.1 Engine
-↓
-WavLM + LFCC
-↓
-Feature Fusion
-↓
-LightGBM
-↓
-Threat Report
-```
+**Pipeline at a glance:** `Audio Input → REST/WebSocket → Validation → Preprocessing → WavLM + LFCC → Feature Fusion → LightGBM → Threat Report`
 
 ---
 
-# 📊 Dataset Intelligence Pipeline
+## 🧬 Model Evolution
 
-The model uses:
+```mermaid
+timeline
+    title Audio Forensics Model Evolution
+    V1 : CRNN + Mel Spectrogram : Baseline spectrogram deep learning
+    V2 : Augmented CRNN : Noise injection, time/frequency masking
+    V3 : Hybrid CRNN : Improved robustness
+    V4 : Wav2Vec2 + XGBoost : Transformer embeddings, Whisper support
+    V5 : Production Wrapper : FastAPI, ONNX inference, WebSocket streaming
+    V6 : Wav2Vec2 + LFCC + XGBoost : Signal forensic features
+    V7 : Siamese WavLM : Similarity learning, embedding comparison
+    V8 : WavLM DNA + XGBoost : Cached embeddings, optimized inference
+    V8.1 : WavLM + LFCC + LightGBM : Final production forensic engine
+```
 
-* Real human speech
-* AI-generated synthetic speech
-* Multilingual speech
-* Multiple speakers
-* Multiple TTS architectures
+<details>
+<summary><b>Expand version-by-version details</b></summary>
 
-Goal:
+| Version | Architecture | Highlights |
+|---|---|---|
+| **V1** | CRNN + Mel Spectrogram | Baseline; limited generalization, noise-sensitive |
+| **V2** | Augmented CRNN | Added noise injection, time/frequency masking |
+| **V3** | Hybrid CRNN | Improved augmentation strategy and generalization |
+| **V4** | Wav2Vec2 + XGBoost | Major shift to transformer embeddings + Whisper |
+| **V5** | Production Wrapper | FastAPI, ONNX inference, static + WebSocket API |
+| **V6** | Wav2Vec2 + LFCC + XGBoost | Added phase analysis, better artifact detection |
+| **V7** | Siamese WavLM | WavLM encoder, pair-based similarity training |
+| **V8** | WavLM DNA + XGBoost | Clip-level cached embeddings, efficient inference |
+| **V8.1** | WavLM + LFCC + LightGBM | **Final production engine — 99.84% accuracy** |
 
-Detect synthetic artifacts instead of memorizing language, speaker, or dataset bias.
+</details>
 
 ---
 
-# 🌍 Multilingual Dataset Intelligence
+## 📊 Dataset Intelligence
 
-## Built on Mozilla's Open Voice Data Initiative
+The model is trained on a deliberately diverse mix of:
 
-We proudly utilize the Mozilla Data Collective, a pioneering open-source initiative dedicated to democratizing voice AI training data.
+- Real human speech
+- AI-generated synthetic speech
+- Multilingual speech across multiple speakers
+- Multiple TTS architectures
 
-Mozilla's community-driven approach enables researchers and developers to build fairer and more inclusive speech systems by increasing representation of historically underrepresented languages such as:
+**Goal:** detect *synthetic artifacts* rather than memorizing language, speaker, or dataset bias.
 
-* Kinyarwanda
-* Pashto
-* Bengali
+### 🌍 Mozilla Data Collective
 
-The Audio Forensics threat detection baseline was trained using publicly available Mozilla voice datasets, demonstrating how transparent, community-driven datasets are essential for reducing AI bias and improving responsible voice security.
+Built on **Mozilla's Open Voice Data Initiative**, a community-driven effort to democratize voice AI training data and increase representation of underrepresented languages (Kinyarwanda, Pashto, Bengali, and more).
 
-## Mozilla Data Collective Scale
+| Metric | Value |
+|---|---|
+| Total Voice Samples (global initiative) | 10.4M+ |
+| Languages Covered (global initiative) | 90+ |
+| Contributors | 500,000+ |
+| Base Clips Used for Training | 90,000 |
+| Dataset Quality Score | 99.86% |
 
-```
-10.4M+ Voice Samples
+### ⚖️ Real vs. Synthetic Split
 
-90+ Global Languages
+| Type | Count | Share | Source |
+|---|---|---|---|
+| **Real Audio** | 45,000 | 50% | Mozilla Data Collective speech recordings |
+| **Synthetic Audio** | 45,000 | 50% | MMS · x-TTS · Microsoft Edge TTS · ElevenLabs v3 |
 
-500,000+ Contributors
-```
+### 🗣️ Language Coverage
 
----
+<details>
+<summary><b>Expand full language-by-language breakdown</b></summary>
 
-# Dataset Foundation
+| Language | ISO 639-3 | Synthetic Engine | Mozilla Dataset Source |
+|---|---|---|---|
+| English | `eng` | x-TTS | Common Voice Scripted Speech 26.0 |
+| French | `fra` | x-TTS | Common Voice Scripted Speech 26.0 |
+| German | `deu` | x-TTS | Common Voice Scripted Speech 26.0 |
+| Spanish | `spa` | x-TTS | Common Voice Scripted Speech 26.0 |
+| Catalan | `cat` | MMS | Common Voice Scripted Speech 26.0 |
+| Bengali | `ben` | MMS | Common Voice Scripted Speech 26.0 |
+| Kinyarwanda | `kin` | MMS | Common Voice Scripted Speech 26.0 |
+| Pashto | `pus/pbt/pbu` | Microsoft Edge-TTS (Azure Neural fallback) | Common Voice Scripted Speech 26.0 |
+| Chinese | `zho/cmn` | Microsoft Edge-TTS (Azure Neural fallback) | Common Voice Scripted Speech 26.0 |
 
-## Mozilla Data Collective
+**Notes:**
+- English provides the baseline acoustic foundation across multiple accents/regions.
+- French covers metropolitan and African speech variants.
+- German's phonetic complexity demands detailed acoustic analysis.
+- Spanish spans Iberian and Latin American variations.
+- Catalan, Bengali, and Kinyarwanda represent historically underrepresented communities.
+- Pashto and Chinese require dedicated handling of complex consonant/tonal structures.
 
-```
-99.86%
-90,000 audio clips
-```
-
-Primary foundation of the multilingual dataset.
-
-Provides:
-
-* Diverse speaker coverage
-* Global language representation
-* Open-source speech resources
-* Community verified recordings
-
----
-
-# Audio Clips Breakdown
-
-## Real Audio Clips
-
-```
-45,000
-50%
-```
-
-Source:
-
-Mozilla Data Collective speech recordings
+</details>
 
 ---
 
-## Synthetic Audio Clips
+## 🔎 Language Identification (GlotLID)
 
-```
-45,000
-50%
-```
+GlotLID validates language identity **before training**, preventing incorrect labels, mixed-language samples, metadata errors, and misclassified recordings.
 
-Generated from real speech using:
-
-* MMS
-* x-TTS
-* Microsoft Edge TTS
-* ElevenLabs v3
-
----
-
-# 🌐 Multilingual Threat Detection & Protection
-
-The multilingual threat detection framework provides comprehensive voice authentication across nine languages through advanced acoustic analysis.
-
-By combining:
-
-* Diverse multilingual datasets
-* Synthetic voice generation
-* Transformer speech embeddings
-* Signal forensic features
-
-the system identifies:
-
-* Unnatural frequency transitions
-* Robotic breathing patterns
-* Artificial emotional expression
-* Spectral inconsistencies
-* Phase anomalies
-
-The detector operates in real-time by analyzing acoustic fingerprints and speech structure to distinguish:
-
-```
-Authentic Human Voice
-
-vs
-
-AI Generated Synthetic Voice
-```
-
-Supported languages:
-
-* English
-* French
-* German
-* Spanish
-* Catalan
-* Bengali
-* Kinyarwanda
-* Pashto
-* Chinese
-
----
-
-# 🗣️ Language Dataset Coverage
-
-## English
-
-```
-ISO 639-3:
-eng
-
-Synthetic Model:
-x-TTS
-```
-
-Mozilla Dataset:
-
-```
-Common Voice Scripted Speech 26.0 - English
-```
-
-English provides the baseline acoustic foundation with multiple accents and regional variations.
-
----
-
-## French
-
-```
-ISO 639-3:
-fra
-
-Synthetic Model:
-x-TTS
-```
-
-Mozilla Dataset:
-
-```
-Common Voice Scripted Speech 26.0 - French
-```
-
-French coverage includes metropolitan and African speech variants.
-
----
-
-## German
-
-```
-ISO 639-3:
-deu
-
-Synthetic Model:
-x-TTS
-```
-
-Mozilla Dataset:
-
-```
-Common Voice Scripted Speech 26.0 - German
-```
-
-German phonetic complexity requires detailed acoustic analysis for synthetic detection.
-
----
-
-## Spanish
-
-```
-ISO 639-3:
-spa
-
-Synthetic Model:
-x-TTS
-```
-
-Mozilla Dataset:
-
-```
-Common Voice Scripted Speech 26.0 - Spanish
-```
-
-Includes Iberian and Latin American speech variations.
-
----
-
-## Catalan
-
-```
-ISO 639-3:
-cat
-
-Synthetic Model:
-MMS
-```
-
-Mozilla Dataset:
-
-```
-Common Voice Scripted Speech 26.0 - Catalan
-```
-
-Represents underrepresented linguistic communities.
-
----
-
-## Bengali
-
-```
-ISO 639-3:
-ben
-
-Synthetic Model:
-MMS
-```
-
-Mozilla Dataset:
-
-```
-Common Voice Scripted Speech 26.0 - Bengali
-```
-
-Captures South Asian phonetic diversity.
-
----
-
-## Kinyarwanda
-
-```
-ISO 639-3:
-kin
-
-Synthetic Model:
-MMS
-```
-
-Mozilla Dataset:
-
-```
-Common Voice Scripted Speech 26.0 - Kinyarwanda
-```
-
-Supports African language representation in AI security.
-
----
-
-## Pashto
-
-```
-ISO 639-3:
-pus/pbt/pbu
-
-Synthetic Model:
-Microsoft Edge-TTS Engine
-(Azure Neural Fallback)
-```
-
-Mozilla Dataset:
-
-```
-Common Voice Scripted Speech 26.0 - Pashto
-```
-
-Handles complex consonant structures and tonal variations.
-
----
-
-## Chinese
-
-```
-ISO 639-3:
-zho/cmn
-
-Synthetic Model:
-Microsoft Edge-TTS Engine
-(Azure Neural Fallback)
-```
-
-Mozilla Dataset:
-
-```
-Common Voice Scripted Speech 26.0 - Chinese
-```
-
-Supports Mandarin tonal and prosodic analysis.
-
----
-
-# 🔎 GlotLID Language Identification Pipeline
-
-GlotLID is integrated to validate language before training.
-
-Prevents:
-
-* Incorrect language labels
-* Mixed-language samples
-* Metadata errors
-* Misclassified recordings
-
-Workflow:
-
-```
+```text
 Raw Audio Dataset
-
-↓
-
+      ↓
 Audio Extraction
-
-↓
-
+      ↓
 GlotLID Language Detection
-
-↓
-
+      ↓
 Confidence Filtering
-
-↓
-
+      ↓
 Valid Language Bucket
-
-↓
-
+      ↓
 Feature Extraction
-
-↓
-
+      ↓
 Model Training
 ```
 
----
+**Processing steps:** Audio Loading → Language Detection (label + confidence score) → Metadata Verification (vs. dataset metadata, expected category, training labels) → Filtering
 
-# GlotLID Processing Steps
-
-## 1. Audio Loading
-
-Audio files are decoded and converted into standardized waveforms.
-
----
-
-## 2. Language Detection
-
-GlotLID predicts:
-
-```
-Detected Language
-+
-Confidence Score
-```
+| Accepted ✅ | Rejected ❌ |
+|---|---|
+| Matching language | Wrong language |
+| Valid confidence | Low confidence |
+| Correct metadata | Corrupted samples |
 
 ---
 
-## 3. Metadata Verification
+## 🤖 Synthetic Voice Generation Pipeline
 
-Compared with:
+Synthetic speech sources used across the project: **OpenAI voice generation · Google Cloud TTS · Coqui XTTSv2 · Microsoft Edge TTS · gTTS · eSpeak** — used for voice cloning simulation, AI voice diversity, and robustness testing.
 
-* Dataset metadata
-* Expected language category
-* Training labels
+### 🎙️ ElevenLabs v3 Pipeline
 
----
+A dedicated pipeline expanded the AI-generated speech dataset using the **ElevenLabs `eleven_v3`** model.
 
-## 4. Filtering
+| Detail | Value |
+|---|---|
+| Clips generated | 7,700 synthetic clips |
+| Target per language | 1,100 clips |
+| Languages | English, German, French, Spanish, Chinese, Catalan, Bengali |
+| Excluded at this stage | Kinyarwanda, Pashto |
+| Voice diversity | 21 naturally sounding voices, dynamically fetched from the ElevenLabs voice library, randomly sampled per clip |
 
-Accepted:
+**Source transcription models** (real audio → text before synthesis):
 
-✅ Matching language
-✅ Valid confidence
-✅ Correct metadata
+| Languages | Transcription Model |
+|---|---|
+| English, German, French, Spanish, Chinese, Catalan | AssemblyAI Universal-3-Pro / Universal-2 |
+| Bengali | OpenAI Whisper Small |
 
-Rejected:
+**Generation workflow:**
 
-❌ Wrong language
-❌ Low confidence
-❌ Corrupted samples
-
----
-# 🔊 Audio Preprocessing
-
-Pipeline:
-
-```id="1f23af"
-Input Audio
-
-↓
-
-Format Validation
-
-↓
-
-FFmpeg Conversion
-
-↓
-
-16kHz Resampling
-
-↓
-
-Mono Conversion
-
-↓
-
-Noise Filtering
-
-↓
-
-Silence Removal
-
-↓
-
-RMS Filtering
-
-↓
-
-Chunk Generation
-
-↓
-
-Feature Extraction
+```text
+Real Audio → Speech Transcription → Sentence Extraction
+   → Random ElevenLabs Voice Selection → ElevenLabs eleven_v3 Generation
+   → Synthetic Audio Output → Dataset Integration
 ```
 
-Standard:
+**Reliability mechanisms:**
+- Smart top-up & resume logic — tracks existing output per language, generates only missing samples, skips completed files, prevents duplicates
+- Rate-limit resilience — exponential backoff, retry (max 3 attempts), increasing wait intervals, polite request delays
 
-* 16000 Hz
-* Mono
-* WAV
+### ☁️ OpenAI & Google Cloud TTS Booster Pack
 
-Techniques:
+A focused **130-clip booster pack** stress-tests the meta-classifier against unseen, state-of-the-art TTS engines beyond the main training pipeline — improving generalization and reducing dependency on training-source artifacts.
 
-* FFmpeg validation
-* RMS energy filtering
-* Silence trimming
-* Language verification
+| Engine | Clips Generated |
+|---|---|
+| Google Cloud TTS | 70 |
+| OpenAI TTS | 60 |
+| **Total** | **130** |
+
+Each language used **20 validated authentic sentences** as the seed set, with the following vendor routing strategy:
+
+| Sentence Range | Engine |
+|---|---|
+| First 10 sentences | Google Cloud TTS (Neural2 / WaveNet) |
+| Next 10 sentences | OpenAI TTS — `tts-1-hd`, Nova voice |
+
+- **Google Cloud TTS** covered English, French, Spanish, German, Chinese, Catalan, Bengali using Neural2, WaveNet, and Standard voices.
+- **OpenAI TTS** (`tts-1-hd`, Nova voice) covered English, French, Spanish, German, Chinese, Catalan — Bengali was excluded due to language-support limitations and routed entirely through Google Cloud TTS.
+
+<details>
+<summary><b>Expand voice/model reference table</b></summary>
+
+| Language | Google Cloud Voice | OpenAI Voice |
+|---|---|---|
+| English | Journey — `en-US-Journey-D` | Nova (`tts-1-hd`) |
+| French | Neural2 — `fr-FR-Neural2-A` | Nova (`tts-1-hd`) |
+| Spanish | Neural2 — `es-ES-Neural2-A` | Nova (`tts-1-hd`) |
+| German | Neural2 — `de-DE-Neural2-B` | Nova (`tts-1-hd`) |
+| Chinese (Mandarin) | WaveNet — `cmn-CN-Wavenet-A` | Nova (`tts-1-hd`) |
+| Catalan | Standard — `ca-ES-Standard-A` | Nova (`tts-1-hd`) |
+| Bengali | WaveNet — `bn-IN-Wavenet-A` | — (not supported) |
+
+</details>
 
 ---
 
-# 🤖 Synthetic Voice Generation
+## 🔊 Audio Preprocessing
 
-Synthetic sources:
-
-* OpenAI voice generation
-* Google Cloud TTS
-* Coqui XTTSv2
-* Microsoft Edge TTS
-* gTTS
-* eSpeak
-
-Used for:
-
-* Voice cloning simulation
-* AI voice diversity
-* Robustness testing
-
----
-
-# 🎙️ ElevenLabs v3 Synthetic Audio Generation Pipeline
-
-A dedicated synthetic voice generation pipeline was created to expand the AI-generated speech dataset using the **ElevenLabs eleven_v3 model**.
-
-## Dataset Expansion
-
-Generated:
-
-```id="q2xg7r"
-7,700 synthetic audio clips
+```text
+Input Audio → Format Validation → FFmpeg Conversion → 16kHz Resampling
+   → Mono Conversion → Noise Filtering → Silence Removal
+   → RMS Filtering → Chunk Generation → Feature Extraction
 ```
 
-Languages:
+**Standard format:** 16,000 Hz · Mono · WAV
+**Techniques:** FFmpeg validation · RMS energy filtering · silence trimming · language verification
 
-* English
-* German
-* French
-* Spanish
-* Chinese
-* Catalan
-* Bengali
+### 🌧️ Environmental Noise Augmentation
 
-Target:
-
-```id="6a9v9q"
-1,100 synthetic clips per language
-```
-
-Excluded from this generation stage:
-
-* Kinyarwanda
-* Pashto
+To prevent the detector from learning *"clean audio = synthetic"* as a shortcut, every generated clip receives randomized low-level white noise injection and real-world recording/environmental simulation — improving robustness for phone recordings, voice calls, microphone variation, and real deployment conditions.
 
 ---
 
-# 🗣️ Comprehensive Vocal Diversity
+## 🔬 Feature Extraction
 
-To maximize synthetic voice diversity:
-
-* 21 naturally sounding speaker voices were used
-* Voices were dynamically fetched from ElevenLabs voice library
-* Multiple speaker identities were randomly sampled
-
-This prevents overfitting to a single synthetic speaker profile.
-
----
-
-# 🔎 Voice Pool Sourcing
-
-Premade natural voices were dynamically fetched.
-
-Benefits:
-
-* Increased speaker variation
-* Better synthetic artifact coverage
-* More realistic TTS diversity
+| Feature | Introduced | Captures |
+|---|---|---|
+| Mel Spectrogram | Early CRNN versions (V1–V3) | Basic time-frequency representation |
+| Wav2Vec2 | V4 | Contextual speech representations |
+| WavLM | V7, V8, V8.1 | Speaker information, speech structure, synthetic artifacts |
+| LFCC | V6, optimized in V8.1 | Frequency inconsistencies, micro spectral artifacts |
 
 ---
 
-# 📝 Source Transcription Pipeline
+## 🎛️ Data Augmentation
 
-Real speech clips were converted into text before synthesis.
-
-Transcription models:
-
-## English, German, French, Spanish, Chinese, Catalan
-
-Used:
-
-* AssemblyAI Universal-3-Pro
-* AssemblyAI Universal-2
-
-## Bengali
-
-Used:
-
-* OpenAI Whisper Small
+- Background noise injection
+- Time masking / frequency masking
+- Telephonic channel simulation
+- Band-pass filtering
+- Compression degradation
 
 ---
 
-# 🔊 Synthetic Voice Generation Workflow
+## 🧪 Testing & API Usage
 
-```id="0n2y8d"
-Real Audio
+### Static Analysis
 
-↓
+**Endpoint:** `/analyze`
 
-Speech Transcription
-
-↓
-
-Sentence Extraction
-
-↓
-
-Random ElevenLabs Voice Selection
-
-↓
-
-ElevenLabs eleven_v3 Generation
-
-↓
-
-Synthetic Audio Output
-
-↓
-
-Dataset Integration
-```
-
-Each sentence was synthesized using:
-
-* ElevenLabs eleven_v3
-* Random premade voices
-
-to create realistic synthetic counterparts.
-
----
-
-# ⚡ Smart Top-Up & Resume Logic
-
-The generation pipeline includes automatic progress tracking.
-
-Features:
-
-* Checks existing output per language
-* Generates only missing samples
-* Maintains 1,100 clips per language
-* Skips completed files
-* Prevents duplicate generation
-
----
-
-# 🛡️ Rate-Limit Resilience
-
-API reliability mechanisms:
-
-* Exponential backoff
-* Retry mechanism
-* Maximum 3 attempts
-* Increasing wait intervals
-* Polite request delays
-
-This ensures stable large-scale dataset generation.
-
----
-
-# 🚀 OpenAI & Google Cloud TTS Audio Generation
-
-A focused **130-clip synthetic booster pack** was generated to stress-test the final Audio Forensics meta-classifier against unseen, state-of-the-art TTS engines beyond the main training pipeline.
-
-Purpose:
-
-* Evaluate generalization
-* Test unseen synthesis engines
-* Reduce dependency on training-source artifacts
-* Validate production robustness
-
-The booster pack used:
-
-```id="d5o5z6"
-20 validated authentic sentences per language
-```
-
----
-
-# Synthetic Booster Pack Generation
-
-Generated:
-
-```id="f5j1p3"
-Google Cloud TTS:
-70 clips
-
-OpenAI TTS:
-60 clips
-
-Total:
-130 synthetic clips
-```
-
----
-
-# ☁️ Google Cloud TTS Generation
-
-Google Cloud Text-to-Speech was used across seven languages.
-
-Models:
-
-* Neural2
-* WaveNet
-* Standard voices
-
-Generated languages:
-
-* English
-* French
-* Spanish
-* German
-* Chinese
-* Catalan
-* Bengali
-
----
-
-# 🤖 OpenAI TTS Generation
-
-OpenAI Text-to-Speech used:
-
-```id="z1w7m9"
-Model:
-tts-1-hd
-
-Voice:
-Nova
-```
-
-Supported languages:
-
-* English
-* French
-* Spanish
-* German
-* Chinese
-* Catalan
-
-Note:
-
-Bengali was excluded from the OpenAI branch because of language support limitations and routed entirely through Google Cloud TTS.
-
----
-
-# 🔀 Vendor Routing Strategy
-
-For each supported language:
-
-First 10 sentences:
-
-```id="5r6v2d"
-Google Cloud TTS
-(Neural2 / WaveNet)
-```
-
-Next 10 sentences:
-
-```id="7t2h6n"
-OpenAI TTS
-tts-1-hd
-Nova Voice
-```
-
-This created a balanced evaluation set across different synthesis engines.
-
----
-
-# 🌎 Voices & Speaker Models Used
-
-## Google Cloud TTS
-
-### English
-
-```id="1q4s7w"
-Journey
-en-US-Journey-D
-```
-
----
-
-### French
-
-```id="s4x8u2"
-Neural2
-fr-FR-Neural2-A
-```
-
----
-
-### Spanish
-
-```id="h8p2x4"
-Neural2
-es-ES-Neural2-A
-```
-
----
-
-### German
-
-```id="m6k9z1"
-Neural2
-de-DE-Neural2-B
-```
-
----
-
-### Chinese Mandarin
-
-```id="c7n3v5"
-WaveNet
-cmn-CN-Wavenet-A
-```
-
----
-
-### Catalan
-
-```id="r9v1k8"
-Standard
-ca-ES-Standard-A
-```
-
----
-
-### Bengali
-
-```id="b2m5x7"
-WaveNet
-bn-IN-Wavenet-A
-```
-
----
-
-# OpenAI TTS Voice
-
-Primary model:
-
-```id="w8n4q3"
-Voice:
-Nova
-
-Model:
-tts-1-hd
-```
-
-Languages:
-
-* English
-* French
-* Spanish
-* German
-* Chinese
-* Catalan
-
----
-
-# 🌧️ Environmental Noise Augmentation
-
-To prevent the detector from learning:
-
-```id="z5p9m1"
-"clean audio = synthetic"
-```
-
-as a shortcut,
-
-every generated clip received:
-
-* Randomized low-level white noise injection
-* Real-world recording simulation
-* Environmental degradation
-
-This improves robustness against:
-
-* Phone recordings
-* Voice calls
-* Microphone variations
-* Real deployment conditions
-
----
-
-# 🎛️ Data Augmentation
-
-Includes:
-
-* Background noise injection
-* Time masking
-* Frequency masking
-* Telephonic channel simulation
-* Band-pass filtering
-* Compression degradation
-
----
-
-# 🔬 Feature Extraction
-
-## Mel Spectrogram
-
-Used in early CRNN versions.
-
----
-
-## Wav2Vec2
-
-Introduced in V4.
-
-Learns contextual speech representations.
-
----
-
-## WavLM
-
-Used in V7, V8, V8.1.
-
-Captures:
-
-* Speaker information
-* Speech structure
-* Synthetic artifacts
-
----
-
-## LFCC
-
-Used in V6 and optimized in V8.1.
-
-Captures:
-
-* Frequency inconsistencies
-* Micro spectral artifacts
-
----
-
-# 🧬 Model Evolution Journey
-
-```mermaid id="q7s1f8"
-timeline
-
-title Audio Forensics Model Evolution
-
-V1 : CRNN + Mel Spectrogram
-     Baseline spectrogram deep learning
-
-V2 : Augmented CRNN
-     Noise injection
-     Time masking
-     Frequency masking
-
-V3 : Hybrid CRNN
-     Improved robustness
-
-V4 : Wav2Vec2 + XGBoost
-     Transformer embeddings
-     Whisper support
-
-V5 : Production Wrapper
-     FastAPI
-     ONNX inference
-     WebSocket streaming
-
-V6 : Wav2Vec2 + LFCC + XGBoost
-     Signal forensic features
-
-V7 : Siamese WavLM
-     Similarity learning
-     Embedding comparison
-
-V8 : WavLM DNA + XGBoost
-     Cached embeddings
-     Optimized inference
-
-V8.1 : WavLM + LFCC + LightGBM
-       Final production forensic engine
-```
-
----
-
-# V1 — CRNN + Mel Spectrogram
-
-Initial baseline using spectrogram-based deep learning.
-
-Limitations:
-
-* Limited generalization
-* Sensitive to noise
-
----
-
-# V2 — Augmented CRNN
-
-Added:
-
-* Noise injection
-* Time masking
-* Frequency masking
-
-Improved robustness.
-
----
-
-# V3 — Hybrid CRNN
-
-Improved augmentation strategy and generalization.
-
----
-
-# V4 — Wav2Vec2 + XGBoost
-
-Major transition into transformer embeddings.
-
-Added:
-
-* Wav2Vec2 features
-* Whisper language support
-* XGBoost classifier
-
----
-
-# V5 — Production Wrapper
-
-Converted V4 into deployable infrastructure.
-
-Added:
-
-* FastAPI
-* ONNX inference
-* Static API
-* WebSocket streaming
-
-V5 was a production wrapper around V4.
-
----
-
-# V6 — Wav2Vec2 + LFCC + XGBoost
-
-Added:
-
-* LFCC features
-* Phase analysis
-* Better artifact detection
-
----
-
-# V7 — Siamese WavLM
-
-Introduced similarity learning.
-
-Added:
-
-* WavLM encoder
-* Pair-based training
-* Embedding comparison
-
----
-
-# V8 — WavLM DNA + XGBoost
-
-Production optimization:
-
-* Clip-level embeddings
-* Cached features
-* Efficient inference
-
----
-
-# V8.1 — WavLM + LFCC + LightGBM
-
-Final production forensic engine.
-
-Architecture:
-
-```id="n5x8r2"
-Audio
-
-↓
-
-WavLM Encoder
-
-+
-
-LFCC Extraction
-
-↓
-
-848-D Feature Vector
-
-↓
-
-LightGBM
-
-↓
-
-AI / Human Classification
-```
-
-Accuracy:
-
-```id="m3v8q0"
-99.84%
-```
-# 🧪 Testing
-
-## Static Analysis
-
-Endpoint:
-
-```id="9n3w0a"
-/analyze
-```
-
-Example:
-
-```python id="s7m3k2"
+```python
 import requests
 
-url="https://venkatasriram-audio-forensics-v8-1-demo.hf.space/analyze"
+url = "https://venkatasriram-audio-forensics-v8-1-demo.hf.space/analyze"
 
-files={
-    "file":open("sample.wav","rb")
+files = {
+    "file": open("sample.wav", "rb")
 }
 
-response = requests.post(
-    url,
-    files=files
-)
-
+response = requests.post(url, files=files)
 print(response.json())
 ```
 
-Returns:
+**Returns:** threat status · AI probability · human probability · language detection · action report
 
-* Threat status
-* AI probability
-* Human probability
-* Language detection
-* Action report
+### 🎧 Live Streaming Testing
 
----
+**File:** `live_stream_tester_v8_1.py`
 
-# 🎧 Live Streaming Testing
-
-File:
-
-```id="u4m9c2"
-live_stream_tester_v8_1.py
-```
-
-Install:
-
-```bash id="v2n6x8"
+```bash
 pip install websockets librosa numpy nest_asyncio
 ```
 
-Configure:
-
-```python id="r8q1w5"
-uri="wss://venkatasriram-audio-forensics-v8-1-demo.hf.space/ws/stream"
-
-TEST_FILE="sample.wav"
+```python
+uri = "wss://venkatasriram-audio-forensics-v8-1-demo.hf.space/ws/stream"
+TEST_FILE = "sample.wav"
 ```
 
-Run:
-
-```bash id="a6y3p9"
+```bash
 python live_stream_tester_v8_1.py
 ```
 
-Process:
-
-1. Load audio
-2. Convert to 16kHz mono
-3. Split into 0.5 second chunks
-4. Stream through WebSocket
-5. Receive live predictions
-6. Generate forensic report
+**Process:** Load audio → Convert to 16kHz mono → Split into 0.5s chunks → Stream via WebSocket → Receive live predictions → Generate forensic report
 
 ---
 
-# 🖥️ Frontend
+## 🖥️ Frontend
 
-Built with:
+**Built with:** React · Vite · Tailwind CSS · shadcn/ui · WebSockets · Firebase
 
-* React
-* Vite
-* Tailwind CSS
-* shadcn/ui
-* WebSockets
-* Firebase
+**Features:** Authentication · Analysis history · Dashboard · Threat visualization · Real-time inference display
 
-Features:
-
-* Authentication
-* Analysis history
-* Dashboard
-* Threat visualization
-* Real-time inference display
-
-Frontend architecture:
-
-```id="k2m8v4"
-React UI
-
-↓
-
-WebSocket Client
-
-↓
-
-FastAPI Backend
-
-↓
-
-V8.1 Forensic Engine
-
-↓
-
-Threat Report
+```text
+React UI → WebSocket Client → FastAPI Backend → V8.1 Forensic Engine → Threat Report
 ```
 
-Frontend is private because Firebase stores:
+| Component | Status |
+|---|---|
+| Backend | ✅ Deployed |
+| AI Engine | ✅ Available |
+| Frontend | ❌ Private / local only |
 
-* User records
-* Authentication data
-* Analysis history
+> The frontend repository is kept private because Firebase stores user records, authentication data, and analysis history.
 
-Status:
+### Multilingual Security (Runtime Detection)
 
-✅ Backend deployed
-✅ AI Engine available
-❌ Frontend private/local only
+| Language | Code | Synthetic Engines Evaluated |
+|---|---|---|
+| English | eng | x-TTS, Google TTS, OpenAI TTS |
+| French | fra | x-TTS, Google TTS, OpenAI TTS |
+| German | deu | x-TTS, Google TTS, OpenAI TTS |
+| Spanish | spa | x-TTS, Google TTS, OpenAI TTS |
+| Catalan | cat | MMS, Google TTS, OpenAI TTS |
+| Bengali | ben | MMS, Google TTS |
+| Kinyarwanda | kin | MMS |
+| Pashto | pus/pbt/pbu | Edge TTS |
+| Chinese | zho/cmn | Edge TTS, Google TTS, OpenAI TTS |
 
----
-
-# 📊 Final System Capabilities
-
-The final Audio Forensics V8.1 system provides:
-
-## Static Audio Forensics
-
-Analyzes uploaded recordings and detects:
-
-* AI-generated speech
-* Voice cloning attempts
-* Synthetic artifacts
-* Suspicious acoustic patterns
+The detector identifies unnatural frequency transitions, robotic breathing patterns, artificial emotional expression, spectral inconsistencies, and phase anomalies to distinguish **authentic human voice** from **AI-generated synthetic voice**, in real time.
 
 ---
 
-## Real-Time Voice Monitoring
+## 🛡️ Threat Intelligence Report
 
-Supports:
+Each analysis generates a structured forensic report:
 
-* WebSocket streaming
-* Chunk-based inference
-* Live threat scoring
-* Continuous analysis
-
----
-
-## Multilingual Security
-
-Supported languages:
-
-| Language    | Code        | Synthetic Engines                |
-| ----------- | ----------- | -------------------------------- |
-| English     | eng         | x-TTS, Google TTS, OpenAI TTS    |
-| French      | fra         | x-TTS, Google TTS, OpenAI TTS    |
-| German      | deu         | x-TTS, Google TTS, OpenAI TTS    |
-| Spanish     | spa         | x-TTS, Google TTS, OpenAI TTS    |
-| Catalan     | cat         | MMS, Google TTS, OpenAI TTS      |
-| Bengali     | ben         | MMS, Google TTS                  |
-| Kinyarwanda | kin         | MMS                              |
-| Pashto      | pus/pbt/pbu | Edge TTS                         |
-| Chinese     | zho/cmn     | Edge TTS, Google TTS, OpenAI TTS |
-
----
-
-# 🛡️ Threat Intelligence Output
-
-Each analysis generates:
-
-```id="x7q3m8"
-Forensic Report
-
+```json
 {
-
-Threat Status:
-AI Generated / Human
-
-AI Probability:
-
-Human Probability:
-
-Detected Language:
-
-Confidence Score:
-
-Recommended Action:
-
+  "threat_status": "AI Generated | Human",
+  "ai_probability": "...",
+  "human_probability": "...",
+  "detected_language": "...",
+  "confidence_score": "...",
+  "recommended_action": "..."
 }
 ```
 
 ---
 
-# ⚙️ Production Architecture
+## 📈 Performance
 
-Complete pipeline:
-
-```mermaid id="y5v2m9"
-flowchart LR
-
-A[User Audio Input]
-
-A --> B[REST API / WebSocket]
-
-B --> C[Audio Validation]
-
-C --> D[Preprocessing]
-
-D --> E[WavLM Encoder]
-
-D --> F[LFCC Extraction]
-
-E --> G[Feature Fusion]
-
-F --> G
-
-G --> H[848-D Embedding]
-
-H --> I[LightGBM Classifier]
-
-I --> J[Threat Scoring]
-
-J --> K[Automated Report]
-
-K --> L[Dashboard]
-```
+| Metric | Value |
+|---|---|
+| Model | V8.1 |
+| Architecture | WavLM + LFCC + LightGBM |
+| Feature Size | 848 dimensions |
+| **Accuracy** | **99.84%** |
 
 ---
 
-# 📦 Technology Stack
+## 📦 Technology Stack
 
-## AI / ML
-
-* PyTorch
-* WavLM
-* Wav2Vec2
-* Whisper
-* LFCC
-* LightGBM
-* XGBoost
-* Siamese Networks
+| Category | Technologies |
+|---|---|
+| **AI / ML** | PyTorch, WavLM, Wav2Vec2, Whisper, LFCC, LightGBM, XGBoost, Siamese Networks |
+| **Backend** | FastAPI, WebSockets, ONNX Runtime, Docker |
+| **Deployment** | Google Cloud Run, Hugging Face Spaces, Google Cloud Container Registry |
+| **Frontend** | React, Vite, Tailwind CSS, shadcn/ui, Firebase |
 
 ---
 
-## Backend
+## 🔐 Security Practices
 
-* FastAPI
-* WebSockets
-* ONNX Runtime
-* Docker
-
----
-
-## Deployment
-
-* Google Cloud Run
-* Hugging Face Spaces
-* Google Cloud Container Registry
+- ✅ Do not upload datasets publicly
+- ✅ Do not commit Firebase credentials
+- ✅ Do not commit model weights without Git LFS
+- ✅ Keep API keys private
+- ✅ Store production secrets using environment variables
 
 ---
 
-## Frontend
+## ⚠️ Notes
 
-* React
-* Vite
-* Tailwind CSS
-* shadcn/ui
-* Firebase
-
----
-
-# 📈 Performance
-
-Final production engine:
-
-```id="c4m7x2"
-Model:
-V8.1
-
-Architecture:
-WavLM + LFCC + LightGBM
-
-Feature Size:
-848 dimensions
-
-Accuracy:
-99.84%
-```
+- Version 5 is a production wrapper around Version 4.
+- Version 8.1 is the final production forensic engine.
+- Synthetic datasets are generated only for research and robustness evaluation.
+- Public deployment does not expose private datasets or model weights.
 
 ---
 
-# 🔐 Security Practices
+## 👥 Contributors
 
-Important deployment rules:
-
-✅ Do not upload datasets publicly
-
-✅ Do not commit Firebase credentials
-
-✅ Do not commit model weights without Git LFS
-
-✅ Keep API keys private
-
-✅ Store production secrets using environment variables
+**Ayush M Singh**
+Model development · Backend engineering · AI pipeline design · Dataset processing · Deployment architecture · System optimization
 
 ---
 
-# ⚠️ Notes
+## 📄 License
 
-* Version 5 is a production wrapper around Version 4.
-* Version 8.1 is the final production forensic engine.
-* Synthetic datasets are generated only for research and robustness evaluation.
-* Public deployment does not expose private datasets or model weights.
+No license file is currently included in this repository. Add a `LICENSE` file to clarify reuse and distribution terms.
 
 ---
 
-# 👥 Contributors
+## 🔗 Links
 
-## Ayush M Singh
-
-Responsibilities:
-
-* Model development
-* Backend engineering
-* AI pipeline design
-* Dataset processing
-* Deployment architecture
-* System optimization
+| Resource | URL |
+|---|---|
+| Repository | https://github.com/AYUSHMSINGH2004/Audio-Forensics---AI-For-Voice-Security |
+| Backend Demo | https://venkatasriram-audio-forensics-v8-1-demo.hf.space |
 
 ---
 
-# 🔗 Links
+<div align="center">
 
-## Repository
+### 🏁 Project Summary
 
-```id="r3v9q5"
-https://github.com/AYUSHMSINGH2004/Audio-Forensics---AI-For-Voice-Security
-```
+Audio Forensics demonstrates a complete production-grade AI security pipeline for detecting synthetic voices and voice cloning attacks — combining transformer speech intelligence, signal-level forensic analysis, multilingual datasets, synthetic voice simulation, ensemble classification, and real-time inference.
 
-## Backend Demo
+*Detecting synthetic voices. Protecting authentic communication. Building safer voice AI.*
 
-```id="p8m2z6"
-https://venkatasriram-audio-forensics-v8-1-demo.hf.space
-```
-
----
-
-# 🏁 Project Summary
-
-Audio Forensics demonstrates a complete production-grade AI security pipeline for detecting synthetic voices and voice cloning attacks.
-
-The system combines:
-
-* Transformer speech intelligence
-* Signal-level forensic analysis
-* Multilingual datasets
-* Synthetic voice simulation
-* Ensemble classification
-* Real-time inference
-
-By leveraging diverse open-source speech resources and modern AI architectures, the platform aims to provide scalable protection against emerging voice-based threats.
-
----
-
-# ⭐ Final Architecture Overview
-
-```id="w6n1c9"
-Audio Input
-
-↓
-
-Multilingual Validation
-(GlotLID)
-
-↓
-
-Preprocessing
-
-↓
-
-WavLM Representation
-
-+
-
-LFCC Forensic Features
-
-↓
-
-848-D Feature Fusion
-
-↓
-
-LightGBM Meta Classifier
-
-↓
-
-Threat Intelligence Engine
-
-↓
-
-Real-Time Security Report
-```
-
----
-
-# 🎙️ Audio Forensics
-
-## AI for Voice Security
-
-Detecting synthetic voices.
-
-Protecting authentic communication.
-
-Building safer voice AI.
+</div>
