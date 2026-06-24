@@ -208,13 +208,6 @@ The model is trained on a deliberately diverse mix of:
 
 Built on **Mozilla's Open Voice Data Initiative**, a community-driven effort to democratize voice AI training data and increase representation of underrepresented languages (Kinyarwanda, Pashto, Bengali, and more).
 
-| Metric | Value |
-|---|---|
-| Total Voice Samples (global initiative) | 10.4M+ |
-| Languages Covered (global initiative) | 90+ |
-| Contributors | 500,000+ |
-| Base Clips Used for Training | 90,000 |
-| Dataset Quality Score | 99.86% |
 
 ### ⚖️ Real vs. Synthetic Split
 
@@ -230,23 +223,15 @@ Built on **Mozilla's Open Voice Data Initiative**, a community-driven effort to 
 
 | Language | ISO 639-3 | Synthetic Engine | Mozilla Dataset Source |
 |---|---|---|---|
-| English | `eng` | x-TTS | Common Voice Scripted Speech 26.0 |
-| French | `fra` | x-TTS | Common Voice Scripted Speech 26.0 |
-| German | `deu` | x-TTS | Common Voice Scripted Speech 26.0 |
-| Spanish | `spa` | x-TTS | Common Voice Scripted Speech 26.0 |
-| Catalan | `cat` | MMS | Common Voice Scripted Speech 26.0 |
-| Bengali | `ben` | MMS | Common Voice Scripted Speech 26.0 |
-| Kinyarwanda | `kin` | MMS | Common Voice Scripted Speech 26.0 |
-| Pashto | `pus/pbt/pbu` | Microsoft Edge-TTS (Azure Neural fallback) | Common Voice Scripted Speech 26.0 |
-| Chinese | `zho/cmn` | Microsoft Edge-TTS (Azure Neural fallback) | Common Voice Scripted Speech 26.0 |
-
-**Notes:**
-- English provides the baseline acoustic foundation across multiple accents/regions.
-- French covers metropolitan and African speech variants.
-- German's phonetic complexity demands detailed acoustic analysis.
-- Spanish spans Iberian and Latin American variations.
-- Catalan, Bengali, and Kinyarwanda represent historically underrepresented communities.
-- Pashto and Chinese require dedicated handling of complex consonant/tonal structures.
+| English | `eng` | x-TTS | Common Voice Scripted Speech 26.0 - English |
+| French | `fra` | x-TTS | Common Voice Scripted Speech 26.0 - French |
+| German | `deu` | x-TTS | Common Voice Scripted Speech 26.0 - German |
+| Spanish | `spa` | x-TTS | Common Voice Scripted Speech 26.0 - Spanish |
+| Catalan | `cat` | MMS | Common Voice Scripted Speech 26.0 - Catalan |
+| Bengali | `ben` | MMS | Common Voice Scripted Speech 26.0 - Bengali |
+| Kinyarwanda | `kin` | MMS | Common Voice Scripted Speech 26.0 - Kinyarwanda |
+| Pashto | `pus/pbt/pbu` | Microsoft Edge-TTS (Azure Neural fallback) | Common Voice Scripted Speech 26.0 - Pashto |
+| Chinese | `zho/cmn` | Microsoft Edge-TTS (Azure Neural fallback) | Common Voice Scripted Speech 26.0 - Chinese (China) |
 
 </details>
 
