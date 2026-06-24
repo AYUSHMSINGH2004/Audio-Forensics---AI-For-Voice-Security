@@ -145,6 +145,52 @@ timeline
 
 </details>
 
+### 🪜 Step-by-Step Model Evolution
+
+#### V1 — CRNN + Mel Spectrogram
+Initial baseline using spectrogram-based deep learning.
+- **Limitations:** Limited generalization · sensitive to noise
+
+#### V2 — Augmented CRNN
+Improved on V1 by introducing data augmentation to the training pipeline.
+- **Added:** Noise injection · Time masking · Frequency masking
+- **Result:** Improved robustness over the V1 baseline
+
+#### V3 — Hybrid CRNN
+Refined the augmentation strategy further.
+- **Result:** Improved generalization and a more stable hybrid CRNN design
+
+#### V4 — Wav2Vec2 + XGBoost
+A major architectural shift away from spectrograms and into transformer-based speech embeddings.
+- **Added:** Wav2Vec2 transformer features · Whisper language support · XGBoost classifier
+- **Result:** Significant jump in detection quality by moving to learned speech representations
+
+#### V5 — Production Wrapper
+Converted the V4 research model into deployable, production-ready infrastructure (a wrapper around V4, not a new model).
+- **Added:** FastAPI service layer · ONNX inference · Static analysis API · WebSocket streaming
+- **Result:** First version capable of being deployed and queried as a real service
+
+#### V6 — Wav2Vec2 + LFCC + XGBoost
+Introduced signal-processing forensic features alongside the transformer embeddings.
+- **Added:** LFCC (Linear Frequency Cepstral Coefficients) features · Phase analysis
+- **Result:** Better artifact detection by combining learned and hand-engineered forensic signals
+
+#### V7 — Siamese WavLM
+Introduced similarity-learning to compare voice samples directly.
+- **Added:** WavLM encoder (replacing Wav2Vec2) · Pair-based Siamese training · Embedding comparison
+- **Result:** Enabled the system to learn relative similarity between genuine and synthetic voices, not just absolute classification
+
+#### V8 — WavLM DNA + XGBoost
+A production-optimization pass focused on inference efficiency.
+- **Added:** Clip-level WavLM embeddings · Embedding caching · More efficient inference pipeline
+- **Result:** Faster, more scalable inference without sacrificing the V7 detection gains
+
+#### V8.1 — WavLM + LFCC + LightGBM *(Final Production Engine)*
+The final, fused architecture combining transformer embeddings with forensic signal features under a lighter, faster classifier.
+- **Pipeline:** Audio → WavLM Encoder + LFCC Extraction → 848-D Feature Vector → LightGBM → AI / Human Classification
+- **Added:** LightGBM meta-classifier (replacing XGBoost) for faster inference · Optimized LFCC feature extraction
+- **Result:** **99.84% accuracy** — the current production forensic engine powering both the static and real-time APIs
+
 ---
 
 ## 📊 Dataset Intelligence
@@ -484,8 +530,12 @@ Each analysis generates a structured forensic report:
 
 ## 👥 Contributors
 
-**Ayush M Singh**
-Model development · Backend engineering · AI pipeline design · Dataset processing · Deployment architecture · System optimization
+| Contributor | Responsibilities |
+|---|---|
+| **Ayush M Singh** | Model development · Backend engineering · AI pipeline design · Dataset processing · System optimization |
+| **Venkata Sriram Topalli** | Model development · Backend engineering · AI pipeline design · Dataset processing · System optimization · **Backend deployment** |
+
+> All core work — model development, backend engineering, AI pipeline design, dataset processing, and system optimization — was a joint effort between both contributors. Backend deployment was handled solely by **Venkata Sriram Topalli**.
 
 ---
 
