@@ -545,20 +545,6 @@ Each analysis generates a structured forensic report:
 - 🚀 System optimization & performance tuning
 - ☁️ **Backend deployment** (Google Cloud Run + Hugging Face Spaces) — *sole owner of this workstream*
 
-</td>
-</tr>
-</table>
-
-### 📋 Contribution Matrix
-
-| Workstream | Ayush M Singh | Venkata Sriram Topalli |
-|---|---|---|
-| Model Development | ✅ | ✅ |
-| Backend Engineering | ✅ | ✅ |
-| AI Pipeline Design | ✅ | ✅ |
-| Dataset Processing | ✅ | ✅ |
-| System Optimization | ✅ | ✅ |
-| Backend Deployment | ❌ | ✅ *(sole contributor)* |
 
 > Nearly every workstream — model development, backend engineering, AI pipeline design, dataset processing, and system optimization — was a **fully joint effort**. The one exception is **backend deployment**, which was owned and executed solely by **Venkata Sriram Topalli**.
 
