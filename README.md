@@ -251,13 +251,8 @@ GlotLID Language Detection
 Confidence Filtering
       ↓
 Valid Language Bucket
-      ↓
-Feature Extraction
-      ↓
-Model Training
 ```
 
-**Processing steps:** Audio Loading → Language Detection (label + confidence score) → Metadata Verification (vs. dataset metadata, expected category, training labels) → Filtering
 
 | Accepted ✅ | Rejected ❌ |
 |---|---|
