@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore")
 async def simulate_microphone(test_audio_path):
     # Updated URI pointing directly to your new V8.1 Cloud Run deployment
     # UPLOAD THE DEPLOYED BACKEND URL FOR THE FORM "ws://127.0.0.1:8000/ws/stream"
-    uri = "DEPLOYED_BACKEND_LINK"
+    uri = "https://venkatasriram-audio-forensics-v8-1-demo.hf.space"
     
     print(f"[*] Loading test file: {test_audio_path}")
     
