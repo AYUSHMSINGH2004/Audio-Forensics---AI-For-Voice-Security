@@ -293,10 +293,6 @@ Real Audio → Speech Transcription → Sentence Extraction
    → Synthetic Audio Output → Dataset Integration
 ```
 
-**Reliability mechanisms:**
-- Smart top-up & resume logic — tracks existing output per language, generates only missing samples, skips completed files, prevents duplicates
-- Rate-limit resilience — exponential backoff, retry (max 3 attempts), increasing wait intervals, polite request delays
-
 ### ☁️ OpenAI & Google Cloud TTS Booster Pack
 
 A focused **130-clip booster pack** stress-tests the meta-classifier against unseen, state-of-the-art TTS engines beyond the main training pipeline — improving generalization and reducing dependency on training-source artifacts.
