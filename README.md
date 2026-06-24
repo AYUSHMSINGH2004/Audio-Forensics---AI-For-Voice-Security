@@ -221,7 +221,7 @@ Built on **Mozilla's Open Voice Data Initiative**, a community-driven effort to 
 | Type | Count | Share | Source |
 |---|---|---|---|
 | **Real Audio** | 45,000 | 50% | Mozilla Data Collective speech recordings |
-| **Synthetic Audio** | 45,000 | 50% | MMS · x-TTS · Microsoft Edge TTS · ElevenLabs v3 |
+| **Synthetic Audio** | 45,000 | 50% | MMS · x-TTS · Microsoft Edge TTS |
 
 ### 🗣️ Language Coverage
 
