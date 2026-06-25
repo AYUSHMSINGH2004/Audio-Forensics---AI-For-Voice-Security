@@ -344,11 +344,8 @@ Each language used **20 validated authentic sentences** as the seed set, with th
 | First 10 sentences | Google Cloud TTS (Neural2 / WaveNet) |
 | Next 10 sentences | OpenAI TTS — `tts-1-hd`, Nova voice |
 
-- **Google Cloud TTS** covered English, French, Spanish, German, Chinese, Catalan, Bengali using Neural2, WaveNet, and Standard voices.
-- **OpenAI TTS** (`tts-1-hd`, Nova voice) covered English, French, Spanish, German, Chinese, Catalan — Bengali was excluded due to language-support limitations and routed entirely through Google Cloud TTS.
 
-<details>
-<summary><b>Expand voice/model reference table</b></summary>
+### 🗣️ Voice / Model Reference Table
 
 | Language | Google Cloud Voice | OpenAI Voice |
 |---|---|---|
