@@ -51,7 +51,6 @@ The system evolved through **8+ model generations** — moving from spectrogram-
 - [Dataset Intelligence](#-dataset-intelligence)
 - [Language Identification (GlotLID)](#-language-identification-glotlid)
 - [Synthetic Voice Generation Pipeline](#-synthetic-voice-generation-pipeline)
-- [Multilingual Security (Runtime Detection)](#-multilingual-security-runtime-detection)
 - [Audio Preprocessing](#-audio-preprocessing)
 - [Feature Extraction](#-feature-extraction)
 - [Data Augmentation](#-data-augmentation)
