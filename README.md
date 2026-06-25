@@ -360,23 +360,6 @@ Each language used **20 validated authentic sentences** as the seed set, with th
 </details>
 
 ---
-
-## 🌐 Multilingual Security (Runtime Detection)
-
-| Language | Code | Synthetic Engines Evaluated |
-|---|---|---|
-| English | eng | x-TTS, Google TTS, OpenAI TTS |
-| French | fra | x-TTS, Google TTS, OpenAI TTS |
-| German | deu | x-TTS, Google TTS, OpenAI TTS |
-| Spanish | spa | x-TTS, Google TTS, OpenAI TTS |
-| Catalan | cat | MMS, Google TTS, OpenAI TTS |
-| Bengali | ben | MMS, Google TTS |
-| Kinyarwanda | kin | MMS |
-| Pashto | pus/pbt/pbu | Edge TTS |
-| Chinese | zho/cmn | Edge TTS, Google TTS, OpenAI TTS |
-
-The detector identifies unnatural frequency transitions, robotic breathing patterns, artificial emotional expression, spectral inconsistencies, and phase anomalies to distinguish **authentic human voice** from **AI-generated synthetic voice**, in real time.
-
 ---
 
 ## 🔊 Audio Preprocessing
@@ -421,7 +404,7 @@ To prevent the detector from learning *"clean audio = synthetic"* as a shortcut,
 
 ### Static Analysis
 
-**Endpoint:** `POST/analyze`
+**Endpoint:** `/analyze`
 
 ```python
 import requests
