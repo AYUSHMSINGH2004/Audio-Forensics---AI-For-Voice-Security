@@ -1,33 +1,39 @@
-# Use the official PyTorch image with CUDA 12.1 pre-installed
+# Keep the same runtime family first, since your backend was built around Torch + torchaudio + Whisper + WavLM
 FROM pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Install system-level dependencies required by librosa, soundfile, and whisper
-RUN apt-get update && apt-get install -y ffmpeg libsndfile1 git && rm -rf /var/lib/apt/lists/*
+# System dependencies needed by librosa / soundfile / whisper
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    libsndfile1 \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy the requirements file into the container
+# Copy requirements first for better layer caching
 COPY requirements.txt .
 
-# Install Python dependencies (Pin setuptools to avoid pkg_resources error)
+# Safer Python packaging setup
 RUN pip install --no-cache-dir --upgrade pip "setuptools<70.0.0" wheel
 
-# INSTALL WITH NO-BUILD-ISOLATION TO FORCE WHISPER TO USE OUR DOWNGRADED SETUPTOOLS
+# Install Python dependencies
 RUN pip install --no-cache-dir --no-build-isolation -r requirements.txt
 
-# Pre-Bake HuggingFace (WavLM) & Whisper Models directly into the /app directory
+# Cache locations for HF/transformers/whisper downloads
 ENV HF_HOME=/app/.cache/huggingface
+ENV TRANSFORMERS_CACHE=/app/.cache/huggingface
+ENV XDG_CACHE_HOME=/app/.cache
+
+# Pre-download WavLM assets during image build
 RUN python3 -c "from transformers import Wav2Vec2FeatureExtractor, WavLMModel; Wav2Vec2FeatureExtractor.from_pretrained('microsoft/wavlm-base-plus'); WavLMModel.from_pretrained('microsoft/wavlm-base-plus')"
 
-# Pre-Bake Whisper
+# Pre-download Whisper tiny model during image build
 RUN python3 -c "import whisper; whisper.load_model('tiny', download_root='/app/.cache/whisper')"
 
-# Copy your actual application files into the container
+# Copy app files
 COPY . .
 
-# Expose the port Cloud Run expects (8080)
-EXPOSE 8080
+# Hugging Face Docker Spaces expect the app on port 7860
+EXPOSE 7860
 
-# Command to run the FastAPI application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
