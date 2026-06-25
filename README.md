@@ -47,9 +47,11 @@ The system evolved through **8+ model generations** — moving from spectrogram-
 - [Live Deployments](#-live-deployments)
 - [System Architecture](#-system-architecture)
 - [Model Evolution](#-model-evolution)
+- [Dataset & Model Download](#-dataset--model-download)
 - [Dataset Intelligence](#-dataset-intelligence)
 - [Language Identification (GlotLID)](#-language-identification-glotlid)
 - [Synthetic Voice Generation Pipeline](#-synthetic-voice-generation-pipeline)
+- [Multilingual Security (Runtime Detection)](#-multilingual-security-runtime-detection)
 - [Audio Preprocessing](#-audio-preprocessing)
 - [Feature Extraction](#-feature-extraction)
 - [Data Augmentation](#-data-augmentation)
@@ -209,9 +211,9 @@ The complete archive is available here:
 
 > The dataset package contains research artifacts, model evolution history, and supporting resources used throughout the development of the production forensic engine.
 
+---
 
 ## 📊 Dataset Intelligence
-
 
 The model is trained on a deliberately diverse mix of:
 
@@ -226,14 +228,12 @@ The model is trained on a deliberately diverse mix of:
 
 Built on **Mozilla's Open Voice Data Initiative**, a community-driven effort to democratize voice AI training data and increase representation of underrepresented languages (Kinyarwanda, Pashto, Bengali, and more).
 
-
 ### ⚖️ Real vs. Synthetic Split
 
 | Type | Count | Share | Source |
 |---|---|---|---|
 | **Real Audio** | 45,000 | 50% | Mozilla Data Collective speech recordings |
 | **Synthetic Audio** | 45,000 | 50% | MMS · x-TTS · Microsoft Edge TTS |
-
 
 ### 🌍 Language Selection History
 
@@ -251,9 +251,7 @@ The final production dataset and evaluation pipeline used **9 languages**:
 
 English, German, French, Spanish, Chinese, Catalan, Bengali, Kinyarwanda, and Pashto.
 
-
 ### 🗣️ Language Coverage
-
 
 <details>
 <summary><b>Expand full language-by-language breakdown</b></summary>
@@ -289,7 +287,6 @@ Confidence Filtering
       ↓
 Valid Language Bucket
 ```
-
 
 | Accepted ✅ | Rejected ❌ |
 |---|---|
@@ -364,6 +361,24 @@ Each language used **20 validated authentic sentences** as the seed set, with th
 | Bengali | WaveNet — `bn-IN-Wavenet-A` | — (not supported) |
 
 </details>
+
+---
+
+## 🌐 Multilingual Security (Runtime Detection)
+
+| Language | Code | Synthetic Engines Evaluated |
+|---|---|---|
+| English | eng | x-TTS, Google TTS, OpenAI TTS |
+| French | fra | x-TTS, Google TTS, OpenAI TTS |
+| German | deu | x-TTS, Google TTS, OpenAI TTS |
+| Spanish | spa | x-TTS, Google TTS, OpenAI TTS |
+| Catalan | cat | MMS, Google TTS, OpenAI TTS |
+| Bengali | ben | MMS, Google TTS |
+| Kinyarwanda | kin | MMS |
+| Pashto | pus/pbt/pbu | Edge TTS |
+| Chinese | zho/cmn | Edge TTS, Google TTS, OpenAI TTS |
+
+The detector identifies unnatural frequency transitions, robotic breathing patterns, artificial emotional expression, spectral inconsistencies, and phase anomalies to distinguish **authentic human voice** from **AI-generated synthetic voice**, in real time.
 
 ---
 
@@ -464,22 +479,6 @@ React UI → WebSocket Client → FastAPI Backend → V8.1 Forensic Engine → T
 | Frontend | ❌ Private / local only |
 
 > The frontend repository is kept private because Firebase stores user records, authentication data, and analysis history.
-
-### Multilingual Security (Runtime Detection)
-
-| Language | Code | Synthetic Engines Evaluated |
-|---|---|---|
-| English | eng | x-TTS, Google TTS, OpenAI TTS |
-| French | fra | x-TTS, Google TTS, OpenAI TTS |
-| German | deu | x-TTS, Google TTS, OpenAI TTS |
-| Spanish | spa | x-TTS, Google TTS, OpenAI TTS |
-| Catalan | cat | MMS, Google TTS, OpenAI TTS |
-| Bengali | ben | MMS, Google TTS |
-| Kinyarwanda | kin | MMS |
-| Pashto | pus/pbt/pbu | Edge TTS |
-| Chinese | zho/cmn | Edge TTS, Google TTS, OpenAI TTS |
-
-The detector identifies unnatural frequency transitions, robotic breathing patterns, artificial emotional expression, spectral inconsistencies, and phase anomalies to distinguish **authentic human voice** from **AI-generated synthetic voice**, in real time.
 
 ---
 
@@ -591,7 +590,7 @@ Each analysis generates a structured forensic report:
 
 ## 📄 License
 
-No license file is currently included in this repository. Add a `LICENSE` file to clarify reuse and distribution terms.
+For Academic purpose only.
 
 ---
 
