@@ -193,9 +193,10 @@ The final, fused architecture combining transformer embeddings with forensic sig
 
 ---
 
-## 📊 Dataset Intelligence## 
 
-📊 Dataset & Model Download
+## 📊 Dataset Intelligence
+
+## 📊 Dataset & Model Download
 
 The complete Audio Forensics package (**27.4GB**) contains all major development assets from the project, including:
 
@@ -209,9 +210,7 @@ The complete archive is available here:
 - 🌐 [Internet Archive Project Page](https://archive.org/details/Audio-Forensics-Models)
 - 💾 [Direct Download Directory](https://archive.org/download/Audio-Forensics-Models)
 
-
 > The dataset package contains research artifacts, model evolution history, and supporting resources used throughout the development of the production forensic engine.
-
 
 The model is trained on a deliberately diverse mix of:
 
@@ -235,6 +234,22 @@ Built on **Mozilla's Open Voice Data Initiative**, a community-driven effort to 
 | **Synthetic Audio** | 45,000 | 50% | MMS · x-TTS · Microsoft Edge TTS |
 
 ### 🗣️ Language Coverage
+
+### 🌍 Language Selection History
+
+The project initially started with support for **11 target languages**:
+
+English, German, French, Spanish, Chinese, Catalan, Bengali, Kinyarwanda, Pashto, Belarusian, and Esperanto.
+
+During dataset validation and preparation, Belarusian and Esperanto were removed due to:
+
+- Limited available high-quality speech data
+- Data scarcity for synthetic voice generation
+- Language standardization and consistency challenges
+
+The final production dataset and evaluation pipeline used **9 languages**:
+
+English, German, French, Spanish, Chinese, Catalan, Bengali, Kinyarwanda, and Pashto.
 
 <details>
 <summary><b>Expand full language-by-language breakdown</b></summary>
