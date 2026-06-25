@@ -1,4 +1,3 @@
-# Keep the same runtime family first, since your backend was built around Torch + torchaudio + Whisper + WavLM
 FROM pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime
 
 WORKDIR /app
