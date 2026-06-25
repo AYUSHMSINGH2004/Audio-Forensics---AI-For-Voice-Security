@@ -458,7 +458,7 @@ TEST_FILE = "sample.wav"
 python live_stream_tester_v8_1.py
 ```
 
-**Process:** Load audio → Convert to 16kHz mono → Split into 0.5s chunks → Stream via WebSocket → Receive live predictions → Generate forensic report
+**Process:** Load audio → Convert to 16kHz mono → Split into 4s chunks → Stream via WebSocket → Receive live predictions → Generate forensic report
 
 ---
 
