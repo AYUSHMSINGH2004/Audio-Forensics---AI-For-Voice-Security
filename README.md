@@ -421,7 +421,7 @@ To prevent the detector from learning *"clean audio = synthetic"* as a shortcut,
 
 ### Static Analysis
 
-**Endpoint:** `/analyze`
+**Endpoint:** `POST/analyze`
 
 ```python
 import requests
