@@ -360,7 +360,7 @@ const TechnicalArchitecturePage = () => {
                       </div>
                       <div className="lg:col-span-3 p-6 bg-background/50 flex items-center justify-center">
                         <img 
-                          src="YOUR_IMAGE_CDN_URL" 
+                          src="https://github.com/AYUSHMSINGH2004/Audio-Forensics---AI-For-Voice-Security/blob/main/Backend/V_8_1_Production/v8_1_evaluation_plots.png?raw=true" 
                           alt="Confusion Matrix and KDE Plot" 
                           className="w-full max-h-[400px] object-contain rounded-xl shadow-lg border border-border/30"
                         />
