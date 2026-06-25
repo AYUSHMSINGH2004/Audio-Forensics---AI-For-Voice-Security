@@ -193,7 +193,25 @@ The final, fused architecture combining transformer embeddings with forensic sig
 
 ---
 
-## 📊 Dataset Intelligence
+## 📊 Dataset Intelligence## 
+
+📊 Dataset & Model Download
+
+The complete Audio Forensics package (**27.4GB**) contains all major development assets from the project, including:
+
+- 🧠 8 iterative model generations (V1 → V8.1)
+- 🎙️ Raw real and synthetic audio datasets
+- 🧪 Training and evaluation scripts
+- 📓 Primary research and experimentation notebooks
+
+The complete archive is available here:
+
+- 🌐 [Internet Archive Project Page](https://archive.org/details/Audio-Forensics-Models)
+- 💾 [Direct Download Directory](https://archive.org/download/Audio-Forensics-Models)
+
+
+> The dataset package contains research artifacts, model evolution history, and supporting resources used throughout the development of the production forensic engine.
+
 
 The model is trained on a deliberately diverse mix of:
 
