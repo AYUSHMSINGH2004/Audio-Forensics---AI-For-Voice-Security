@@ -14,11 +14,11 @@ declare -A languages=(
     ["spanish"]="Paste fresh link here"
     ["kinyarwanda"]="Paste fresh link here"
     ["esperanto"]="Paste fresh link here"
-    ["catalan"]="https://72ae03f85def1ef3381e3d99f8c68750.eu.r2.cloudflarestorage.com/mdc-uploads-prod/uploads/cmfh0j9o10006ns07jq45h7xk/1774750990349-cv-corpus-25.0-2026-03-09-ca.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=0d5d31845e57b6348e50419f408895bb%2F20260428%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260428T100351Z&X-Amz-Expires=43200&X-Amz-Signature=ac8aeaab695e1d89b2e177e7b83d0a2369afe2e159e5eb9e5caa7611716a99b2&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
-    ["chinese"]="https://72ae03f85def1ef3381e3d99f8c68750.eu.r2.cloudflarestorage.com/mdc-uploads-prod/uploads/cmfh0j9o10006ns07jq45h7xk/1774277290669-cv-corpus-25.0-2026-03-09-zh-CN.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=0d5d31845e57b6348e50419f408895bb%2F20260428%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260428T100420Z&X-Amz-Expires=43200&X-Amz-Signature=ef6dc6e4f7e2dce085d0b372499aafc019c03c6248ba541d5885134813f02902&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
-    ["bengali"]="https://72ae03f85def1ef3381e3d99f8c68750.eu.r2.cloudflarestorage.com/mdc-uploads-prod/uploads/cmfh0j9o10006ns07jq45h7xk/1774282951635-cv-corpus-25.0-2026-03-09-bn.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=0d5d31845e57b6348e50419f408895bb%2F20260428%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260428T100451Z&X-Amz-Expires=43200&X-Amz-Signature=177c155bb4e2f7e4b511e0c127c5122ba56bb51325e09e934cbf467a967d94a6&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
-    ["pashto"]="https://72ae03f85def1ef3381e3d99f8c68750.eu.r2.cloudflarestorage.com/mdc-uploads-prod/uploads/cmfh0j9o10006ns07jq45h7xk/1774762677539-cv-corpus-25.0-2026-03-09-ps.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=0d5d31845e57b6348e50419f408895bb%2F20260428%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260428T100523Z&X-Amz-Expires=43200&X-Amz-Signature=a945c1b45309c92a1b282f03753473f9693cfc67683cec3fbdba31ee4c005849&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
-    ["belarusian"]="https://72ae03f85def1ef3381e3d99f8c68750.eu.r2.cloudflarestorage.com/mdc-uploads-prod/uploads/cmfh0j9o10006ns07jq45h7xk/1774314143059-cv-corpus-25.0-2026-03-09-be.tar.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=0d5d31845e57b6348e50419f408895bb%2F20260428%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260428T100551Z&X-Amz-Expires=43200&X-Amz-Signature=8e0e1376dae427e17e942b42b73ae95143587a44a2292aa43962910f554b131f&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    ["catalan"]="Paste fresh link here"
+    ["chinese"]="Paste fresh link here"
+    ["bengali"]="Paste fresh link here"
+    ["pashto"]="Paste fresh link here"
+    ["belarusian"]="Paste fresh link here"
 )
 
 echo "Starting high-speed parallel downloads..."
