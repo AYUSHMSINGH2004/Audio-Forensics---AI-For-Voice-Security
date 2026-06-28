@@ -377,17 +377,6 @@ To prevent the detector from learning *"clean audio = synthetic"* as a shortcut,
 
 ---
 
-## 🔬 Feature Extraction
-
-| Feature | Introduced | Captures |
-|---|---|---|
-| Mel Spectrogram | Early CRNN versions (V1–V3) | Basic time-frequency representation |
-| Wav2Vec2 | V4 | Contextual speech representations |
-| WavLM | V7, V8, V8.1 | Speaker information, speech structure, synthetic artifacts |
-| LFCC | V6, optimized in V8.1 | Frequency inconsistencies, micro spectral artifacts |
-
----
-
 ## 🎛️ Data Augmentation
 
 - Background noise injection
