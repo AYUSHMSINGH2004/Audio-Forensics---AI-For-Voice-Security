@@ -493,7 +493,6 @@ Each analysis generates a structured forensic report:
 - Version 5 is a production wrapper around Version 4.
 - Version 8.1 is the final production forensic engine.
 - Synthetic datasets are generated only for research and robustness evaluation.
-- Public deployment does not expose private datasets or model weights.
 
 ---
 
