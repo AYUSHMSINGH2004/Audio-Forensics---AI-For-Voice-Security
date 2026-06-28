@@ -6,7 +6,7 @@ DEST_FOLDER="real voice"
 
 # 2. Define the languages and their fresh links
 
-# For fresh links , Navigate to the Mozilla Data Collective and get the links for each of the respective languages , start the download and terminate it immediately then navigate to your browser downloads section, copy and paste the link here. 
+# For fresh links , Navigate to the Mozilla Data Collective for each of the respective languages , start the download and terminate it immediately then navigate to your browser downloads section, copy and paste the link here. 
 declare -A languages=(
     ["english"]="Paste fresh link here"
     ["french"]="Paste fresh link here"
