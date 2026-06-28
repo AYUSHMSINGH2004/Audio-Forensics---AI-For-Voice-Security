@@ -377,16 +377,6 @@ To prevent the detector from learning *"clean audio = synthetic"* as a shortcut,
 
 ---
 
-## 🎛️ Data Augmentation
-
-- Background noise injection
-- Time masking / frequency masking
-- Telephonic channel simulation
-- Band-pass filtering
-- Compression degradation
-
----
-
 ## 🧪 Testing & API Usage
 
 ### Static Analysis
