@@ -540,6 +540,7 @@ Each analysis generates a structured forensic report:
 <tr>
 <table>
 
+> Nearly every workstream — model development, backend engineering, AI pipeline design, dataset processing, and system optimization — was a fully joint effort. 
 ---
 
 ## 📄 License
